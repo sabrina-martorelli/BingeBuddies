@@ -1,0 +1,80 @@
+/* VARIABLES */
+:root {
+    --primary: purple;
+    
+  }
+  
+  /* RESETS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+  }
+  
+  body {
+    font-family: sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* GLOBAL CLASSES */
+  .row, .column {
+    display: flex;
+  }
+  
+  .column {
+    flex-direction: column;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-space-between {
+    justify-content: space-between;
+  }
+  
+  .align-center {
+    align-items: center;
+  }
+
+  /* Custom Styling */
+
+  .logo {
+    padding: 20px;
+    background-color: rgb(126, 68, 106);
+    display: inline;
+    margin: 40px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-family: monospace;
+  }
+
+  header {
+    margin: 30px;
+  }
+
+  .hero {
+    height: 45vh;
+    background-color: rgb(27, 2, 20);
+    border-radius: 30px;
+    margin: 0px 15px 0px 15px;
+  }
+
+  .watch, .no-thanks {
+    background-color: rgb(154, 72, 231);
+    padding: 10px;
+    border-radius: 15px;
+    margin: 0px 10px 0px 10px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 80vh;
+    margin-right: 50px;
+  }
