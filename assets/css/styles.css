@@ -1,6 +1,10 @@
 /* VARIABLES */
 :root {
-    --primary: purple;
+    --primary: #4f518c;
+    --text: #2c2a4a;
+    --lightPink: #907ad6;
+    --skin: #dabfff;
+    --softgreen: #7FDEFF;
     
   }
   
@@ -10,6 +14,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: monospace;
+    color: var(--text);
   }
   
   body {
@@ -45,9 +50,9 @@
 
   .logo {
     padding: 20px;
-    background-color: rgb(126, 68, 106);
+    background-color: var(--lightPink);
     display: inline;
-    margin: 40px;
+    margin: 70px;
     border-radius: 20px;
     font-size: 20px;
     font-family: monospace;
@@ -59,13 +64,13 @@
 
   .hero {
     height: 45vh;
-    background-color: rgb(27, 2, 20);
+    background-color: var(--primary);
     border-radius: 30px;
-    margin: 0px 15px 0px 15px;
+    margin: 0px 100px 0px 100px;
   }
 
   .watch, .no-thanks {
-    background-color: rgb(154, 72, 231);
+    background-color: var(--skin);
     padding: 10px;
     border-radius: 15px;
     margin: 0px 10px 0px 10px;
@@ -78,3 +83,24 @@
     height: 80vh;
     margin-right: 50px;
   }
+
+.genre-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.genres {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.buttonstyle {
+    padding: 10px;
+    background-color: var(--softgreen);
+    border-radius: 15px;
+    margin: 10px;
+    text-align: center;
+}
