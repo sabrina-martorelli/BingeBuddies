@@ -4,53 +4,54 @@ var MediaType = "tv"
 
 
 /********************************YOUTUBE API******************************************** */
-var youtubeKey="AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 //Hardcode Variables for testing
-var movieName="Kaguya-sama: Love Is War";
-var movieId='uMIsXdoj2vU';
+var movieName = "Kaguya-sama: Love Is War";
+var movieId = 'uMIsXdoj2vU';
 
 /******************************************************************************************* */
+ TopTVShowPickoftheDay().then(test)
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
     var URLOption = `${baseURL}trending/${MediaType}/day?api_key=${TMDB_APIKey}`
-    let tempArr=[]
-    $.get(URLOption)
-        .then(function (data) {
-            let showList = data.results;
-           
+    let tempArr = []
+    return $.get(URLOption)
+        .then(function (data)
+         {
+            let showList = data.results;            
             for (var i = 0; i < showList.length; i++) {
-                tempArr.push( showList[i].name)
-            }
+                tempArr.push(showList[i].name)
+            }           
+           return tempArr
         }, function (data) {
             console.log(data.responseJSON["status_message"])
         }
-        )
-        
-return tempArr
+        )   
+}
+function test(tempArr)
+{
+    console.log("accessing the item:" ,tempArr)
 }
 /** Get the list of official genres for TV shows. */
-function getCategoryList()
-{
+function getCategoryList() {
     var categoryURL = `${baseURL}genre/tv/list?api_key=${TMDB_APIKey}`
     let tempArr = []
 
-    $.get(categoryURL)
-    .then(function (data) {
-        let categoryList = data.genres
-        for(var i = 0; i< categoryList.length;i++)
-        {
-            tempArr.push(categoryList[i]["name"])
+   return $.get(categoryURL)
+        .then(function (data) {
+            let categoryList = data.genres
+            for (var i = 0; i < categoryList.length; i++) {
+                tempArr.push(categoryList[i]["name"])
+            }
+            return tempArr
+        }, function (data) {
+            console.log(data.responseJSON["status_message"])
         }
-       
-    }, function (data) {
-        console.log(data.responseJSON["status_message"])
-    }
-    )
-return tempArr
+        )    
 }
- 
+
 
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
@@ -60,20 +61,14 @@ return tempArr
 
 
 function getYoutubeVideo(movieName) {
-   
+
     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
-          
+
             console.log(data);
             //If the movie was found calls function to show video
-            displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);    
-           
+            displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);
+
         });
-
-
-
-
-
-
 }
 
