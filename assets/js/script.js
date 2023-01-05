@@ -2,7 +2,7 @@ var youtubeKey="AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 //Hardcode Variables for testing
 var movieName="Kaguya-sama: Love Is War";
-var movieId='uMIsXdoj2vU';
+var movieId='uMIsXdoj2vU'; 
 
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
