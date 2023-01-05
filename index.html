@@ -1,76 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BingeBuddies</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<header>
-    <h1 class="logo">BingeBuddies</h1>
-</header>
-<body>
-
-<div class="hero">
-
-<div class="buttons">
-
-    <button class="watch">
-        Watch Trailer?
-    </button>
-
-    <button class="no-thanks">
-        No Thanks
-    </button>
-
-</div>
-
-<section class="genre-section">
-    <h4 class="genre-title"> What <strong>genre</strong> would you like? </h4>
-</section>
-
-<div class="genres"> 
-
-<button class="comedy buttonstyle">
-    Comedy
-</button>
-
-<button class="action buttonstyle">
- Action
- </button>
-
-<button class="sci-fi buttonstyle">
-Sci-Fi 
-</button>
-
-<button class="horror buttonstyle">
-    Horror </button>
-
- <button class="romance buttonstyle">
-        Romance </button>
-
-<button class="drama buttonstyle">
-            Drama </button>
-
-            <button class="thriller buttonstyle">
-                Thriller </button>
-
-                <button class="fantasy buttonstyle">
-                    Fantasy </button>
-
-</div>
-
-</div>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
 
 
+  <header class="parent">
+    <h1 class="logo child">BingeBuddies</h1>
     
+<div class="dropdown child">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+    
+  </header>
+  <body>
+    <div class="hero">
+      <div class="trailer">
+        <div class="buttons">
+          <button class="watch fancy">Watch Trailer?</button>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-<!-- Local js file -->
-<script src="assets/js/script.js"></script>  
-</body>
+          <!-- <button class="no-thanks">
+        No Thanks
+    </button> -->
+        </div>
+      </div>
+ </div>
+      <div class="next-section">
+        <section class="genre-section">
+          <h4 class="genre-title">
+            What <strong>genre</strong> would you like?
+          </h4>
+        </section>
+
+        <div class="genres">
+          <button class="comedy buttonstyle">Comedy</button>
+
+          <button class="action buttonstyle">Action</button>
+
+          <button class="sci-fi buttonstyle">Sci-Fi</button>
+
+          <button class="horror buttonstyle">Horror</button>
+
+          <button class="romance buttonstyle">Romance</button>
+
+          <button class="drama buttonstyle">Drama</button>
+
+          <button class="thriller buttonstyle">Thriller</button>
+
+          <button class="fantasy buttonstyle">Fantasy</button>
+        </div>
+      </div>
+   
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.2.min.js"
+      integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Local js file -->
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
