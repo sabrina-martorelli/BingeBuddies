@@ -6,9 +6,6 @@ var MediaType = "tv"
 /********************************YOUTUBE API******************************************** */
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-//Hardcode Variables for testing
-//var movieName = "Kaguya-sama: Love Is War";
-//var movieId = 'uMIsXdoj2vU';
 
 /******************************************************************************************* */
  TopTVShowPickoftheDay().then(showTopTVShow)
@@ -50,16 +47,11 @@ function getCategoryList() {
         )    
 }
 
-
-
-
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
 
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
-
-
 
 function displayYoutubeVideo (url){
 
@@ -74,17 +66,9 @@ ${url};
 </p>
 </div>
 `)
-
-
-
-
 };
 
-
-
-
 function getYoutubeVideo(movieName) {
-
    
     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
@@ -96,25 +80,14 @@ function getYoutubeVideo(movieName) {
             displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);    
            
         });
-
 }
 
-
-
-
 function showTopTVShow(tempArr){
-    
-
    
    var TVShowNames = tempArr;   
  
     //Passing only 1 element for testing
     getYoutubeVideo(TVShowNames[1]);
-
-    // for (var i = 0; i < TVShowNames.length; i++){
-    //     getYoutubeVideo(TVShowNames[i]);
-       
-    // }
 
 }
 
