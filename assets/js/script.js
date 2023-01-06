@@ -66,9 +66,7 @@ function displayYoutubeVideo (url){
 //Get html tag to show video
 //Example with one video only
 
-console.log(url);
 var trailer = $('.trailer');
-console.log(trailer);
 trailer.append(`
 <div>
 <p>
@@ -111,7 +109,7 @@ function showTopTVShow(tempArr){
    var TVShowNames = tempArr;   
  
     //Passing only 1 element for testing
-    getYoutubeVideo(TVShowNames[0]);
+    getYoutubeVideo(TVShowNames[1]);
 
     // for (var i = 0; i < TVShowNames.length; i++){
     //     getYoutubeVideo(TVShowNames[i]);
