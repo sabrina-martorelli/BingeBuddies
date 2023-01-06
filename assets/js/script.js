@@ -7,11 +7,11 @@ var MediaType = "tv"
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 //Hardcode Variables for testing
-var movieName = "Kaguya-sama: Love Is War";
-var movieId = 'uMIsXdoj2vU';
+//var movieName = "Kaguya-sama: Love Is War";
+//var movieId = 'uMIsXdoj2vU';
 
 /******************************************************************************************* */
- TopTVShowPickoftheDay().showTopTVShow(test)
+ TopTVShowPickoftheDay().then(showTopTVShow)
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
@@ -68,8 +68,8 @@ function displayYoutubeVideo (url){
 
 console.log(url);
 var trailer = $('.trailer');
-console.log(hero);
-hero.append(`
+console.log(trailer);
+trailer.append(`
 <div>
 <p>
 ${url};
@@ -86,11 +86,14 @@ ${url};
 
 
 function getYoutubeVideo(movieName) {
-   console.log(`movie name inside getYoutubeVideo${movieName}`)
+
+   
     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
           
-            //console.log(data);
+        //Gets movie id from searched movie
+            movieId=data.items[0].id.videoId;
+
             //If the movie was found calls function to show video
             displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);    
            
@@ -99,27 +102,21 @@ function getYoutubeVideo(movieName) {
 }
 
 
-// function test(tempArr)
-// {
-//     console.log("accessing the item:" ,tempArr)
-// }
 
 
 function showTopTVShow(tempArr){
     
 
-    //var  TVShowNames= TVlist;
-    var TVShowNames = tempArr;   
-    
-    console.log ('insideShowTopTVShow3');
-    console.log(TVShowNames);
-    console.log(TVShowNames[1]);
-    console.log(TVShowNames.length);
+   
+   var TVShowNames = tempArr;   
+ 
+    //Passing only 1 element for testing
+    getYoutubeVideo(TVShowNames[0]);
 
-    for (var i = 0; i < TVShowNames.length; i++){
-        getYoutubeVideo(TVShowNames[i]);
+    // for (var i = 0; i < TVShowNames.length; i++){
+    //     getYoutubeVideo(TVShowNames[i]);
        
-    }
+    // }
 
 }
 
