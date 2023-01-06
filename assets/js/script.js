@@ -53,21 +53,31 @@ function getCategoryList() {
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
 
+
+
+/** Display youTube video on page. */
 function displayYoutubeVideo (url){
 
 //Get html tag to show video
 //Example with one video only
-
 var trailer = $('.trailer');
+console.log(url);
 trailer.append(`
-<div>
-<p>
-${url};
-</p>
-</div>
+
+<iframe id="existing-iframe-example"
+width="640" height="360"
+src="https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1"
+frameborder="0"
+style="border: solid 4px #37474F"
+>
+</iframe>
+
+
+
 `)
 };
 
+/** Gets youTube video data  from API and creates video url  */
 function getYoutubeVideo(movieName) {
    
     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
@@ -82,6 +92,7 @@ function getYoutubeVideo(movieName) {
         });
 }
 
+/** Gets youTube video data  from API and creates video url  */
 function showTopTVShow(tempArr){
    
    var TVShowNames = tempArr;   
@@ -91,6 +102,7 @@ function showTopTVShow(tempArr){
 
 }
 
+/** Init   */
 function init(){
     
     showTopTVShow();
