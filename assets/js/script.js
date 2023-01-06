@@ -11,7 +11,7 @@ var movieName = "Kaguya-sama: Love Is War";
 var movieId = 'uMIsXdoj2vU';
 
 /******************************************************************************************* */
- TopTVShowPickoftheDay().then(test)
+ TopTVShowPickoftheDay().showTopTVShow(test)
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
@@ -30,10 +30,8 @@ function TopTVShowPickoftheDay() {
         }
         )   
 }
-function test(tempArr)
-{
-    console.log("accessing the item:" ,tempArr)
-}
+
+
 /** Get the list of official genres for TV shows. */
 function getCategoryList() {
     var categoryURL = `${baseURL}genre/tv/list?api_key=${TMDB_APIKey}`
@@ -53,6 +51,8 @@ function getCategoryList() {
 }
 
 
+
+
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
 
@@ -60,15 +60,72 @@ function getCategoryList() {
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
 
 
-function getYoutubeVideo(movieName) {
 
+function displayYoutubeVideo (url){
+
+//Get html tag to show video
+//Example with one video only
+
+console.log(url);
+var trailer = $('.trailer');
+console.log(hero);
+hero.append(`
+<div>
+<p>
+${url};
+</p>
+</div>
+`)
+
+
+
+
+};
+
+
+
+
+function getYoutubeVideo(movieName) {
+   console.log(`movie name inside getYoutubeVideo${movieName}`)
     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
-
-            console.log(data);
+          
+            //console.log(data);
             //If the movie was found calls function to show video
-            displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);
-
+            displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);    
+           
         });
+
 }
 
+
+// function test(tempArr)
+// {
+//     console.log("accessing the item:" ,tempArr)
+// }
+
+
+function showTopTVShow(tempArr){
+    
+
+    //var  TVShowNames= TVlist;
+    var TVShowNames = tempArr;   
+    
+    console.log ('insideShowTopTVShow3');
+    console.log(TVShowNames);
+    console.log(TVShowNames[1]);
+    console.log(TVShowNames.length);
+
+    for (var i = 0; i < TVShowNames.length; i++){
+        getYoutubeVideo(TVShowNames[i]);
+       
+    }
+
+}
+
+function init(){
+    
+    showTopTVShow();
+}
+
+init();
