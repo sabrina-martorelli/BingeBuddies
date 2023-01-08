@@ -149,14 +149,16 @@ function getYoutubeVideo(movieName) {
 
 /** Calls getYoutubeVideo for each video on the Array */
 function showTopTVShow(tempArr){
-      
+    var test=[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,0,1];
+
+    
     var TVShowNames = tempArr;   
 
-    //var video= getRandom()
- 
-    //Passing only 1 element for testing -
-    //Get a random from 0 to TVShowNames.length-1 and use on next function
-    getYoutubeVideo(TVShowNames[1]);
+    //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
+    var video= Math.floor(Math.random()* (TVShowNames.length-1));
+   
+    //Passing only 1 element for testing
+    getYoutubeVideo(TVShowNames[video]);
 
     /**DO NOT DELETE FOR NOW */
     // for (var i = 0; i < TVShowNames.length; i++){
