@@ -62,6 +62,27 @@ function getCategoryList() {
 //src="https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1"
 
 
+
+
+
+
+ 
+/** Store favourites into localStorage */
+function storeFavourites(movieName) { 
+    //Gets favourites searches from local storage
+    var existingSearch = JSON.parse(localStorage.getItem("favourites"));
+    if (existingSearch !== null) {
+        newFavourite = existingSearch;
+    }
+    //Only stores favourites that are not on the local storage already
+    if (!newFavourite.includes(movieName)) {
+        newFavourite.push(movieName);
+    }
+    localStorage.setItem("favourites", JSON.stringify(newFavourite)); 
+}
+
+
+
 /** Display youtube video on page */
 function displayYoutubeVideo (url){
 
