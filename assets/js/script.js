@@ -80,10 +80,10 @@ function renderFavourites() {
         for (var i = 0; i < existingFavourites.length; i++) {
             var favourite= existingFavourites[i];
             //Uses the name of the city as id for future searches
-            favouritesMenu.append(`<button class='favourite-button${i} mb-2 pb-2 pt-2 btn btn-sm btn-block btn-secondary text-black-50' id='${favourite}'>${favourite}</button>`);
+            favouritesMenu.append(`<button class='buttonstyle' id='favourite-button${i}'>${favourite}</button>`);
            
              //Adds listener for new history button
-            var newButton = $(`.favourite-button${i}`);
+            var newButton = $(`#favourite-button${i}`);
             newButton.click(getCurrentWeather);
         }
     }
