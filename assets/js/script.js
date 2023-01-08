@@ -52,75 +52,79 @@ function getCategoryList() {
 
 
 
-
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
 
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
 
+//Example of embed functionality and start end params
+//https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10
+
+//Example of url with embed functionality
+//src="https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1"
 
 
+/** Display youtube video on page */
 function displayYoutubeVideo (url){
 
-//Get html tag to show video
-//Example with one video only
-
 var trailer = $('.trailer');
-trailer.append(`
-<div>
-<p>
-${url};
-</p>
-</div>
+
+
+trailer.prepend(`
+
+<iframe id="existing-iframe-example"  width="500" height="300"
+src="${url}"
+frameborder="0" style= border: solid 4px #37474F">
+</iframe>
+
 `)
-
-
-
 
 };
 
 
 
-
+/** Gets video data and url from youTube API */
 function getYoutubeVideo(movieName) {
-
-   
-    $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-        .then(function (data) {
+ 
+    /**DO NOT DELETE - COMMENTED FOR 403 ERROR */
+    // $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+    //     .then(function (data) {
           
-        //Gets movie id from searched movie
-            movieId=data.items[0].id.videoId;
+    //         //Gets movie id from searched tv show or movie
+    //         movieId=data.items[0].id.videoId;
 
-            //If the movie was found calls function to show video
-            displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);    
+    //         //If the tv show / movie was found calls function to show video on on page
+             
            
-        });
+    //     });
+
+        displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10`);  
+        
 
 }
 
 
 
-
+/** Calls getYoutubeVideo for each video on the Array */
 function showTopTVShow(tempArr){
-    
-
-   
-   var TVShowNames = tempArr;   
+      
+    var TVShowNames = tempArr;   
  
     //Passing only 1 element for testing
     getYoutubeVideo(TVShowNames[1]);
 
+    /**DO NOT DELETE */
     // for (var i = 0; i < TVShowNames.length; i++){
-    //     getYoutubeVideo(TVShowNames[i]);
-       
+    //     getYoutubeVideo(TVShowNames[i]);   
     // }
 
 }
 
-function init(){
-    
+/** Inits script calling  showTopTVShow() function */
+function init(){   
     showTopTVShow();
 }
+
 
 init();
