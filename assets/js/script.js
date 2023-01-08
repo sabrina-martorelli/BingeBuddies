@@ -64,6 +64,33 @@ function getCategoryList() {
 
 
 
+//Render favourites using localStorage
+function renderFavourites() {
+
+    //Get favourites from localStorage
+    var existingFavourites = JSON.parse(localStorage.getItem("favourites"));
+
+    //Gets Menu section
+    favouritesMenu= $('#dropdownMenuButton');
+    //Cleans html to show buttons
+    favouritesMenu.html('');
+
+    //If there is any search stored on localStorage creates a button for each of them
+    if (existingFavourites) {
+        for (var i = 0; i < existingFavourites.length; i++) {
+            var favourite= existingFavourites[i];
+            //Uses the name of the city as id for future searches
+            favouritesMenu.append(`<button class='favourite-button${i} mb-2 pb-2 pt-2 btn btn-sm btn-block btn-secondary text-black-50' id='${favourite}'>${favourite}</button>`);
+           
+             //Adds listener for new history button
+            var newButton = $(`.favourite-button${i}`);
+            newButton.click(getCurrentWeather);
+        }
+    }
+   
+
+}
+
 
 
  
