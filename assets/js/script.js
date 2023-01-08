@@ -6,9 +6,6 @@ var MediaType = "tv"
 /********************************YOUTUBE API******************************************** */
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-//Hardcode Variables for testing
-//var movieName = "Kaguya-sama: Love Is War";
-//var movieId = 'uMIsXdoj2vU';
 
 /******************************************************************************************* */
  TopTVShowPickoftheDay().then(showTopTVShow)
