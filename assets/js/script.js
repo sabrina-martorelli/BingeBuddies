@@ -117,12 +117,9 @@ var trailer = $('.trailer');
 
 
 trailer.prepend(`
-
 <iframe id="existing-iframe-example"  width="500" height="300"
-src="${url}"
-frameborder="0" style= border: solid 4px #37474F">
+src="${url}" frameborder="0" style= border: solid 4px #37474F">
 </iframe>
-
 `)
 
 };
@@ -155,11 +152,14 @@ function getYoutubeVideo(movieName) {
 function showTopTVShow(tempArr){
       
     var TVShowNames = tempArr;   
+
+    //var video= getRandom()
  
-    //Passing only 1 element for testing
+    //Passing only 1 element for testing -
+    //Get a random from 0 to TVShowNames.length-1 and use on next function
     getYoutubeVideo(TVShowNames[1]);
 
-    /**DO NOT DELETE */
+    /**DO NOT DELETE FOR NOW */
     // for (var i = 0; i < TVShowNames.length; i++){
     //     getYoutubeVideo(TVShowNames[i]);   
     // }
