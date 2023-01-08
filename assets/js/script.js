@@ -6,7 +6,6 @@ var MediaType = "tv"
 /********************************YOUTUBE API******************************************** */
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-
 /******************************************************************************************* */
  TopTVShowPickoftheDay().then(showTopTVShow)
 
@@ -112,15 +111,12 @@ function storeFavourites(movieName) {
 
 /** Display youtube video on page */
 function displayYoutubeVideo (url){
-
-var trailer = $('.trailer');
-
-
-trailer.prepend(`
-<iframe id="existing-iframe-example"  width="500" height="300"
-src="${url}" frameborder="0" style= border: solid 4px #37474F">
-</iframe>
-`)
+    var trailer = $('.trailer');
+    trailer.prepend(`
+    <iframe id="existing-iframe-example"  width="500" height="300"
+    src="${url}" frameborder="0" style= border: solid 4px #37474F">
+    </iframe>
+    `)
 
 };
 
@@ -137,7 +133,10 @@ function getYoutubeVideo(movieName) {
     //         movieId=data.items[0].id.videoId;
 
     //         //If the tv show / movie was found calls function to show video on on page
-             
+    //      
+    
+    //displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=10`);  
+         
            
     //     });
 
