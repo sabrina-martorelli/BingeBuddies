@@ -60,7 +60,10 @@ function getCategoryList() {
 //Example of url with embed functionality
 //src="https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1"
 
+//NOT TESTED -Example of embed functionality and start end params and autoplay -NOT TESTED
+//https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10&autoplay=1;
 
+//NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
 
 //Render favourites using localStorage
@@ -134,9 +137,10 @@ function getYoutubeVideo(movieName) {
 
     //         //If the tv show / movie was found calls function to show video on on page
     //      
-    
-    //displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=10`);  
-         
+                // storeFavourites(movieName);
+                // renderFavourites();
+                // displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=10`);  
+
            
     //     });
 
@@ -166,6 +170,7 @@ function showTopTVShow(tempArr){
 
 /** Inits script calling  showTopTVShow() function */
 function init(){   
+    renderFavourites();
     showTopTVShow();
 }
 
