@@ -84,7 +84,7 @@ function renderFavourites() {
            
              //Adds listener for new history button
             var newButton = $(`#favourite-button${i}`);
-            newButton.click(getCurrentWeather);
+            newButton.click(getYoutubeVideo(favourite));
         }
     }
    
