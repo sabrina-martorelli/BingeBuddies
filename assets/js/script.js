@@ -3,8 +3,9 @@ var baseURL = "https://api.themoviedb.org/3/";
 var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
-var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+//var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
+var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
 /******************************************************************************************* */
 
@@ -14,7 +15,7 @@ var newFavourite = [];
 
     
  //Adds event listener for trailer button
-watchTrailerButton.click(displayYoutubeVideoFull);
+//watchTrailerButton.click(displayYoutubeVideoFull);
 //Adds event listener for love button
 loveButton.click(addFavourite);
 
@@ -87,24 +88,10 @@ function storeOnScreenID(movieID, movieName){
   localStorage.setItem("onScreen", JSON.stringify(onScreenData)); 
 }
 
-
-/** Gets youTube video data  from API and creates video url  */
-function getYoutubeVideo(movieName) {
-  $.get(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`
-  ).then(function (data) {
-    //Gets movie id from searched movie
-    movieId = data.items[0].id.videoId;
-
-    //If the movie was found calls function to show video
-    displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);
-  });
-
 //Gets onScreenID from local storage
 function getOnScreenID(){
 
    return JSON.parse(localStorage.getItem("onScreen")); 
-
 }
  
 
@@ -124,20 +111,20 @@ function addFavourite()
 
 
 
-/** Display youtube video on page */
-function displayYoutubeVideoFull () {
+// /** Display youtube video on page */
+// function displayYoutubeVideoFull () {
 
-    //Gets movie id from local storage
-    var onScreenID = getOnScreenID();
+//     //Gets movie id from local storage
+//     var onScreenID = getOnScreenID();
 
-    //Creates URL for full play
-    var urlFullScreen=`https://www.youtube.com/embed/${onScreenID}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
+//     //Creates URL for full play
+//     var urlFullScreen=`https://www.youtube.com/embed/${onScreenID}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
     
 
-    //play in full screen
-    //console.log(urlFullScreen);
+//     //play in full screen
+//     //console.log(urlFullScreen);
 
-};
+// };
 
 
 //Render favourites using localStorage
@@ -214,13 +201,11 @@ function getYoutubeVideo(movieName) {
           
             //Gets movie id from searched tv show or movie
             movieId=data.items[0].id.videoId;
-
-          // Stores the video that is on screen to use as full mode
+            console.log(movieName);
+            console.log(movieId);
+           // Stores the video that is on screen to use as full mode
           
-           //HARDCODE VARS for TESTING
-           //  var movieId = 'tqVVrTvrI8U';
-            // movieName= "The Glory";
-             storeOnScreenID(movieId,movieName);
+            storeOnScreenID(movieId,movieName);
             
             //If the tv show / movie was found calls function to show video on on page
             displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
@@ -330,8 +315,6 @@ function init(){
 
     //Search and render favourites suing local storage
     renderFavourites();
-
-
 
 }
 
