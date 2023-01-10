@@ -69,11 +69,30 @@ var  watchTrailerButton =$('.watch');
 var loveButton=$('.love');
 var newFavourite = [];
 
+//HARDCODE VARS for TESTING
+
+var movieID = 'tqVVrTvrI8U';
+
+
+
+//Sets onScreenID to local storage
+function storeOnScreenID(movieID){
+
+    localStorage.setItem("onScreen", JSON.stringify(movieID)); 
+}
+
+//Gets onScreenID from local storage
+function getOnScreenID(){
+
+   return JSON.parse(localStorage.getItem("onScreen")); 
+}
+ 
 
 function addFavourite()
 {
 
-   var movieID = getOnScreenID();
+   //var movieID = getOnScreenID();
+   
     //Store new favourite on localStorage
     storeFavourites(movieId);
     //Renders favourite using localStorage
@@ -129,16 +148,6 @@ function renderFavourites() {
 }
 
 
-function storeOnScreenID(movieID){
-
-    localStorage.setItem("onScreen", JSON.stringify(movieID)); 
-}
-
-function getOnScreenID(){
-
-   return JSON.parse(localStorage.getItem("onScreen")); 
-}
- 
 /** Store favourites into localStorage */
 function storeFavourites(movieID) { 
     //Gets favourites searches from local storage
@@ -158,13 +167,12 @@ function storeFavourites(movieID) {
 /** Display youtube video on page */
 function displayYoutubeVideo (url){
     
-    var trailer = $('.trailer');
+    var hero = $('.hero');
+  
+    hero.html('');
 
-    //Cleans html to show new video
-    trailer.html('');
-
-    trailer.prepend(`
-    <iframe id="existing-iframe-example"  width="500" height="300" 
+    hero.prepend(`
+    <iframe id="existing-iframe-example" class='trailer'  width="800" height="450" 
     src="${url}" frameborder="0">
     </iframe>
     `)
@@ -177,21 +185,21 @@ function displayYoutubeVideo (url){
 function getYoutubeVideo(movieName) {
  
    
-     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-        .then(function (data) {
+    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+    //     .then(function (data) {
           
-            //Gets movie id from searched tv show or movie
-            movieId=data.items[0].id.videoId;
+    //         //Gets movie id from searched tv show or movie
+    //         movieId=data.items[0].id.videoId;
 
-            // Stores the video that is on screen to use as full mode
-            storeOnScreenID(movieId);
+           // Stores the video that is on screen to use as full mode
+             storeOnScreenID(movieId,movieName);
             
-            //If the tv show / movie was found calls function to show video on on page
-            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+    //         //If the tv show / movie was found calls function to show video on on page
+    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-        });
+    //     });
 
-    //   displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+     displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }

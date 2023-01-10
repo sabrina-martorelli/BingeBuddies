@@ -123,13 +123,13 @@
   }
 
   .trailer {
-    height: 300px;
+   
     background-color: aliceblue;
     border-radius: 30px;
     margin: 40px;
-    padding: 100px 200px;
+   
     text-align: center;
-    width: 500px;
+  
   }
 
 
@@ -139,6 +139,7 @@
     background-color: var(--skin);
     padding: 10px;
     border-radius: 15px;
+    margin:500px ;
     
 
   }
