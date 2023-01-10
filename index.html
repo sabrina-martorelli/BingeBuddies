@@ -32,7 +32,7 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Dropdown button
+        Favourites
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Action</a>
@@ -43,10 +43,8 @@
   </header>
     <!-- BIG HERO SPACE -->
     <div class="hero">
-
-    <!-- TRAILER WHITE SPACE FOR TOP PICK OF DAY -->
+      <!-- TRAILER WHITE SPACE FOR TOP PICK OF DAY -->
       <div class="trailer">
-
         <!-- HEART ICON -->
         <i class="fa-regular fa-heart love fa-2x grow"></i>
         <div class="buttons">
@@ -54,6 +52,59 @@
         </div>
       </div>
     </div>
+
+    <!--CLEAR LIST BUTTON-->
+      <button class="clear-list ">Clear Favourites</button>
+    </div>
+    
+    <!--- ERROR MESSAGE MODAL -->
+    <!-- Button trigger for modal -->
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Launch demo modal
+    </button> -->
+
+    <!-- Error Message Modal -->
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">Error!</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="next-section">
       <section class="genre-section">
         <h4 class="genre-title">What genre would you like?</h4>
