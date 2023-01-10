@@ -127,6 +127,10 @@ function storeFavourites(movieName) {
 function displayYoutubeVideo (url){
     
     var trailer = $('.trailer');
+
+    //Cleans html to show new video
+    trailer.html('');
+
     trailer.prepend(`
     <iframe id="existing-iframe-example"  width="500" height="300"
     src="${url}" frameborder="0" style= border: solid 4px #37474F">
