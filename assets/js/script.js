@@ -87,24 +87,10 @@ function storeOnScreenID(movieID, movieName){
   localStorage.setItem("onScreen", JSON.stringify(onScreenData)); 
 }
 
-
-/** Gets youTube video data  from API and creates video url  */
-function getYoutubeVideo(movieName) {
-  $.get(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`
-  ).then(function (data) {
-    //Gets movie id from searched movie
-    movieId = data.items[0].id.videoId;
-
-    //If the movie was found calls function to show video
-    displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);
-  });
-
 //Gets onScreenID from local storage
 function getOnScreenID(){
 
    return JSON.parse(localStorage.getItem("onScreen")); 
-
 }
  
 
