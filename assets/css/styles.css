@@ -1,28 +1,62 @@
 /* VARIABLES */
 :root {
-  --primary: #4f518c;
-  --text: #2c2a4a;
-  --lightPink: #907ad6;
-  --skin: #dabfff;
-  --softgreen: #7fdeff;
-}
+    --primary: #4f518c;
+    --text: #2c2a4a;
+    --lightPink: #907ad6;
+    --skin: #dabfff;
+    --softgreen: #7FDEFF;
+    
+  }
+  
+  /* RESETS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+    color: var(--text);
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
 
-/* RESETS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: monospace;
-  color: var(--text);
-}
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* GLOBAL CLASSES */
+  /*.row, .column {
+    display: flex;
+  }
+  
+  .column {
+    flex-direction: column;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-space-between {
+    justify-content: space-between;
+  }
+  
+  .align-center {
+    align-items: center;
+  }*/
 
-body {
-  font-family: sans-serif;
-}
-
-a {
-  text-decoration: none;
-}
+  /* BINGEBUDDIES TOP LEFT LOGO */
+  .logo {
+    padding: 20px;    
+    font-size: 14px;
+     color: #fff;     
+    background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+    background-size: 300%;
+    border-radius: 30px;
+    z-index: 1;
+    font-weight: 700 ;
+  }
 
 /* GLOBAL CLASSES */
 .row,
@@ -30,93 +64,33 @@ a {
   display: flex;
 }
 
-.column {
-  flex-direction: column;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-space-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
-}
-
-/* Custom Styling */
-
-/* BINGEBUDDIES TOP LEFT LOGO */
-.logo {
-  padding: 20px;
-  display: inline;
-  margin: 70px;
-  margin-left: 350px;
-  border-radius: 20px;
-  font-size: 20px;
-  font-family: monospace;
-  text-decoration: none;
-  border: none;
-  font-size: 14px;
-  font-family: inherit;
-  color: #fff;
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  background-size: 300%;
+ .dropdown {
+  padding: 10px;
   border-radius: 30px;
-  z-index: 1;
-  font-size: large;
-}
-
-/* BOOTSTRAP DROP DOWN TOP RIGHT */
-
-/* Not sure if this is needed now. */
-
-/* .dropdown { 
-  padding: 20px;
-  display: inline;
-  margin: 70px;
-  margin-left: 350px;
-  font-size: 20px;
-  font-family: monospace;
-  text-decoration: none;
-  border: none;
   font-size: 14px;
-  font-family: inherit;
-  color: #fff;
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  background-size: 300%;
-  border-radius: 30px;
+  color: #fff; 
+  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background-size: 300%;  
   z-index: 1;
-  font-size: large;
-} 
+  font-weight: 700;
+ }
 
 /* WE USED THIS TO INLINE POSITION LOGO + DROPDOWN */
-.parent {
-  /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-}
+  .parent { 
+   display: flex;
+   justify-content:space-around;
+   align-items: center;
+   margin-bottom: 20px;
+   padding:10px;   
+  }
 
-.child {
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 0px 120px;
-}
+  .child {   
+    display: flex;
+    align-items: center;
+    text-align: center;  
+  }
 
+ 
 /* DROP DOWN MENU BUTTON - OVERRIDES BOOTSTRAP CSS */
 .btn {
   border-radius: 30px;
@@ -145,10 +119,6 @@ a {
   color: #fff;
 }
 
-/* NUGDING THE LOGO SLIGHTLY RIGHT BECAUSE DROP DOWN IS LONGER  */
-.logo {
-  margin-left: 190px;
-}
 
 /* DARK BLUE / PURPLE SPACE WHICH THE TRAILER WILL EXPAND INTO IF THEY CLICK WATCH TRAILER */
 
@@ -189,19 +159,16 @@ a {
 
 /* THIS IS CUSTOM STYLING FOR THE WATCH TRAILER BUTTON ONLY */
 .fancy {
-  text-decoration: none;
-  position: absolute;
-  border: none;
-  font-size: 14px;
-  font-family: inherit;
-  color: #fff;
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  background-size: 300%;
-  border-radius: 30px;
-  z-index: 1;
+ text-decoration: none;
+ position: absolute;
+ border: none;
+ font-size: 14px;
+ color: #fff;
+ text-align: center;
+ background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+ background-size: 300%;
+ border-radius: 30px;
+ z-index: 1;
 }
 
 button:hover {
@@ -243,35 +210,65 @@ button:hover {
 
 /* GENRE SECTION */
 .genre-section {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;   
 }
-
-.genres {
-  display: flex;
-  justify-content: center;
+.genre-title
+{
+  font-weight:700;
 }
-
+.genres {  
+    display:grid;
+    grid-template-columns: 0.3fr 0.3fr 0.3fr 0.3fr;     
+}
 .next-section {
-  height: 50vh;
-  margin-top: 220px;
+  padding:20px;  
 }
 
 /* GENRE BUTTON STYLING */
 .buttonstyle {
-  padding: 20px;
-  background-color: var(--softgreen);
-  border-radius: 15px;
-  margin: 20px;
-  text-align: center;
-  font-size: 14px;
-  font-family: inherit;
-  color: #fff;
-  text-align: center;
-  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  background-size: 300%;
-  border-radius: 20px;
+    padding: 10px;     
+    margin: 10px;
+    text-align: center;
+    font-size: 14px;    
+    color: #fff;
+    background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+    background-size: 300%;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;    
+}
+
+/******************Added By Sanjana ******************/
+.selectedGenreShowPreviewDiv
+{
+  width: 30vw;
+  height: 30vh;
+  box-shadow: 0px -0px 5px grey; 
+  border-radius: 5px;
+}
+.genreList
+{
+  height: 35vh;
+  width: 70vw; 
+  margin:10px;
+  border: solid 1px black;
+  border-radius: 5px;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+.genreList p{
+  width: 60vw;
+  font-weight: 900;
+}
+.genres ul{
+  grid-column: 1/5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center; 
 }
 
 /* FOOTER */
@@ -282,17 +279,22 @@ button:hover {
 
 h5 {
   text-align: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 footer {
-  margin-bottom: 50px;
-}
 
+  padding:10px;
+  bottom: 0;
+  right:0;
+  width: 100%;
+  background-color: rgb(79, 81, 140, 0.8);
+}
 /* GROW EFFECT */
-.grow {
-  transition: all 0.2s ease-in-out;
-}
-
-.grow:hover {
-  transform: scale(1.1);
-}
+.grow { 
+  transition: all .2s ease-in-out; 
+  }  
+  .grow:hover { 
+  transform: scale(1.1); 
+  }
