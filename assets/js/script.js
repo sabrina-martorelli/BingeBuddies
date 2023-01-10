@@ -70,9 +70,16 @@ var newFavourite = [];
 
 /** Display youtube video on page */
 function displayYoutubeVideoFull (){
-    //var url='';
-//Get url from local storage
-//play un full screen
+
+    //Gets movie id from local storage
+    var onScreenID = JSON.parse(localStorage.getItem("onScreen"));
+
+    //Creates URL for full play
+    var urlFullScreen=`https://www.youtube.com/embed/${onScreenID}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
+    
+
+    //play in full screen
+    console.log(urlFullScreen)
 
 };
 
@@ -105,18 +112,23 @@ function renderFavourites() {
 }
 
 
+function storeOnScreen(movieID){
+
+    localStorage.setItem("onScreen", JSON.stringify(movieID)); 
+}
+
 
  
 /** Store favourites into localStorage */
-function storeFavourites(movieName) { 
+function storeFavourites(movieID) { 
     //Gets favourites searches from local storage
     var existingSearch = JSON.parse(localStorage.getItem("favourites"));
     if (existingSearch !== null) {
         newFavourite = existingSearch;
     }
     //Only stores favourites that are not on the local storage already
-    if (!newFavourite.includes(movieName)) {
-        newFavourite.push(movieName);
+    if (!newFavourite.includes(movieID)) {
+        newFavourite.push(movieID);
     }
     localStorage.setItem("favourites", JSON.stringify(newFavourite)); 
 }
@@ -132,8 +144,8 @@ function displayYoutubeVideo (url){
     trailer.html('');
 
     trailer.prepend(`
-    <iframe id="existing-iframe-example"  width="500" height="300"
-    src="${url}" frameborder="0" >
+    <iframe id="existing-iframe-example"  width="500" height="300" 
+    src="${url}" frameborder="0">
     </iframe>
     `)
 
@@ -148,15 +160,17 @@ function getYoutubeVideo(movieName) {
     //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
     //     .then(function (data) {
           
-    //      //Gets movie id from searched tv show or movie
+    //         //Gets movie id from searched tv show or movie
     //         movieId=data.items[0].id.videoId;
 
-    //         //If the tv show / movie was found calls function to show video on on page
-        
-    //         storeFavourites(movieName);
+    //         //Stores and renders favourite using localStorage
+    //         storeFavourites(movieId);
     //         renderFavourites();
+                //Stores the video that is on screen to use as full mode
+               //storeOnScreen(movieId);
+            
+               //If the tv show / movie was found calls function to show video on on page
     //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
-
            
     //     });
 
