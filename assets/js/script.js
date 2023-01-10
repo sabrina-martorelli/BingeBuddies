@@ -144,7 +144,7 @@ function getYoutubeVideo(movieName) {
            
     //     });
 
-        displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10`);  
+        displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs?start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
