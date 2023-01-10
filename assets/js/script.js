@@ -99,6 +99,7 @@ function getYoutubeVideo(movieName) {
     //If the movie was found calls function to show video
     displayYoutubeVideo(`https://www.youtube.com/watch?v=${movieId}`);
   });
+}
 
 //Gets onScreenID from local storage
 function getOnScreenID(){
