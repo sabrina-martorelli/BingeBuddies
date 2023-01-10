@@ -66,6 +66,15 @@ function getCategoryList() {
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
 
+/** Display youtube video on page */
+function displayYoutubeVideoFull (){
+    //var url='';
+//Get url from local storage
+//play un full screen
+
+};
+
+
 //Render favourites using localStorage
 function renderFavourites() {
 
@@ -168,10 +177,18 @@ function showTopTVShow(tempArr){
 
 }
 
-/** Inits script calling  showTopTVShow() function */
+/** Inits script calling  rendering favourites and calling showTopTVShow() function */
 function init(){   
+    
+    var  watchTrailerButton =$('.watch');
+
     renderFavourites();
     showTopTVShow();
+    watchTrailerButton.click(displayYoutubeVideoFull);
+
+
+    
+
 }
 
 
