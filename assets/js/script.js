@@ -65,6 +65,8 @@ function getCategoryList() {
 
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
+var  watchTrailerButton =$('.watch');
+var newFavourite = [];
 
 /** Display youtube video on page */
 function displayYoutubeVideoFull (){
@@ -123,6 +125,7 @@ function storeFavourites(movieName) {
 
 /** Display youtube video on page */
 function displayYoutubeVideo (url){
+    
     var trailer = $('.trailer');
     trailer.prepend(`
     <iframe id="existing-iframe-example"  width="500" height="300"
@@ -137,23 +140,23 @@ function displayYoutubeVideo (url){
 /** Gets video data and url from youTube API */
 function getYoutubeVideo(movieName) {
  
-    /**DO NOT DELETE - COMMENTED FOR 403 ERROR */
-    // $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+   
+    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
     //     .then(function (data) {
           
-    //         //Gets movie id from searched tv show or movie
+    //      //Gets movie id from searched tv show or movie
     //         movieId=data.items[0].id.videoId;
 
     //         //If the tv show / movie was found calls function to show video on on page
-    //      
-                // storeFavourites(movieName);
-                // renderFavourites();
-                // displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=10`);  
+        
+    //         storeFavourites(movieName);
+    //         renderFavourites();
+    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
 
            
     //     });
 
-        displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs?start=0&end=15&autoplay=1&mute=1`);  
+       displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
@@ -163,7 +166,7 @@ function getYoutubeVideo(movieName) {
 /** Calls getYoutubeVideo for each video on the Array */
 function showTopTVShow(tempArr){
     var TVShowNames = tempArr;   
-
+    
     //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
     var video= Math.floor(Math.random()* (TVShowNames.length-1));
    
@@ -180,11 +183,11 @@ function showTopTVShow(tempArr){
 /** Inits script calling  rendering favourites and calling showTopTVShow() function */
 function init(){   
     
-    var  watchTrailerButton =$('.watch');
+   
 
     renderFavourites();
     showTopTVShow();
-    watchTrailerButton.click(displayYoutubeVideoFull);
+    //watchTrailerButton.click(displayYoutubeVideoFull);
 
 
     
