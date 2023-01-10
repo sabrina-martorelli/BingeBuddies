@@ -69,16 +69,19 @@ var  watchTrailerButton =$('.watch');
 var loveButton=$('.love');
 var newFavourite = [];
 
-//HARDCODE VARS for TESTING
 
-var movieID = 'tqVVrTvrI8U';
 
 
 
 //Sets onScreenID to local storage
-function storeOnScreenID(movieID){
+function storeOnScreenID(movieID, movieName){
 
-    localStorage.setItem("onScreen", JSON.stringify(movieID)); 
+    var moviedata ={
+       id : movieID,
+       name: movieName,
+    }
+
+    localStorage.setItem("onScreen", JSON.stringify(moviedata)); 
 }
 
 //Gets onScreenID from local storage
@@ -192,6 +195,10 @@ function getYoutubeVideo(movieName) {
     //         movieId=data.items[0].id.videoId;
 
            // Stores the video that is on screen to use as full mode
+          
+           //HARDCODE VARS for TESTING
+             var movieId = 'tqVVrTvrI8U';
+             movieName= "The Glory";
              storeOnScreenID(movieId,movieName);
             
     //         //If the tv show / movie was found calls function to show video on on page
