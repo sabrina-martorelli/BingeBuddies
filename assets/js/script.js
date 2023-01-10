@@ -66,20 +66,37 @@ function getCategoryList() {
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
 var  watchTrailerButton =$('.watch');
+var loveButton=$('.love');
 var newFavourite = [];
 
+
+function addFavourite()
+{
+
+   var movieID = getOnScreenID();
+    //Store new favourite on localStorage
+    storeFavourites(movieId);
+    //Renders favourite using localStorage
+    renderFavourites();
+
+    //Change Love button to full when clicked
+   // console.log(loveButton);
+}
+
+
+
 /** Display youtube video on page */
-function displayYoutubeVideoFull (){
+function displayYoutubeVideoFull () {
 
     //Gets movie id from local storage
-    var onScreenID = JSON.parse(localStorage.getItem("onScreen"));
+    var onScreenID = getOnScreenID();
 
     //Creates URL for full play
     var urlFullScreen=`https://www.youtube.com/embed/${onScreenID}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
     
 
     //play in full screen
-    console.log(urlFullScreen)
+    //console.log(urlFullScreen);
 
 };
 
@@ -112,12 +129,15 @@ function renderFavourites() {
 }
 
 
-function storeOnScreen(movieID){
+function storeOnScreenID(movieID){
 
     localStorage.setItem("onScreen", JSON.stringify(movieID)); 
 }
 
+function getOnScreenID(){
 
+   return JSON.parse(localStorage.getItem("onScreen")); 
+}
  
 /** Store favourites into localStorage */
 function storeFavourites(movieID) { 
@@ -157,24 +177,21 @@ function displayYoutubeVideo (url){
 function getYoutubeVideo(movieName) {
  
    
-    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-    //     .then(function (data) {
+     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+        .then(function (data) {
           
-    //         //Gets movie id from searched tv show or movie
-    //         movieId=data.items[0].id.videoId;
+            //Gets movie id from searched tv show or movie
+            movieId=data.items[0].id.videoId;
 
-    //         //Stores and renders favourite using localStorage
-    //         storeFavourites(movieId);
-    //         renderFavourites();
-                //Stores the video that is on screen to use as full mode
-               //storeOnScreen(movieId);
+            // Stores the video that is on screen to use as full mode
+            storeOnScreenID(movieId);
             
-               //If the tv show / movie was found calls function to show video on on page
-    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+            //If the tv show / movie was found calls function to show video on on page
+            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-    //     });
+        });
 
-       displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+    //   displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
@@ -183,15 +200,17 @@ function getYoutubeVideo(movieName) {
 
 /** Calls getYoutubeVideo for each video on the Array */
 function showTopTVShow(tempArr){
-    var TVShowNames = tempArr;   
     
+    //If the param is not empty or undefined
+    if (tempArr) {
+    var TVShowNames = tempArr;    
     //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
-    var video= Math.floor(Math.random()* (TVShowNames.length-1));
-   
+    var video= Math.floor(Math.random()* (TVShowNames.length-1));  
     //Passing only 1 element for testing
     getYoutubeVideo(TVShowNames[video]);
 
-    /**DO NOT DELETE FOR NOW */
+    }
+    /**DO NOT DELETE FOR NOW IN CASE WE SHOW MORE THAN 1 VIDEO*/
     // for (var i = 0; i < TVShowNames.length; i++){
     //     getYoutubeVideo(TVShowNames[i]);   
     // }
@@ -201,14 +220,14 @@ function showTopTVShow(tempArr){
 /** Inits script calling  rendering favourites and calling showTopTVShow() function */
 function init(){   
     
-   
-
+    //Search and render favourites suing local storage
     renderFavourites();
+    //Show video recommendation  
     showTopTVShow();
-    //watchTrailerButton.click(displayYoutubeVideoFull);
-
-
-    
+    //Adds event listener for trailer button
+    watchTrailerButton.click(displayYoutubeVideoFull);
+    //Adds event listener for love button
+    loveButton.click(addFavourite);
 
 }
 
