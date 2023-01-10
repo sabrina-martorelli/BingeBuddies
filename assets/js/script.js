@@ -47,8 +47,6 @@ function getCategoryList() {
         )    
 }
 
-
-
 //Example of youtube API call with Name of movie + trailer
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
 
@@ -194,6 +192,20 @@ function displayYoutubeVideo (url){
 /** Gets video data and url from youTube API */
 function getYoutubeVideo(movieName) {
  
+//Get html tag to show video
+//Example with one video only
+
+var trailer = $('.trailer');
+trailer.append(`
+<div>
+<p>
+${url};
+</p>
+</div>
+`)
+};
+
+function getYoutubeVideo(movieName) {
    
      $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
