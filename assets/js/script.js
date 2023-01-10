@@ -193,22 +193,6 @@ function displayYoutubeVideo (url){
 
 
 
-/** Gets video data and url from youTube API */
-function getYoutubeVideo(movieName) {
- 
-//Get html tag to show video
-//Example with one video only
-
-var trailer = $('.trailer');
-trailer.append(`
-<div>
-<p>
-${url};
-</p>
-</div>
-`);
-}
-
 function getYoutubeVideo(movieName) {
    
      $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
