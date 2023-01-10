@@ -1,54 +1,62 @@
-const TMDB_APIKey = "d47e2f7ee2ff79fef6594d007321597e"
-var baseURL = "https://api.themoviedb.org/3/"
-var MediaType = "tv"
-
+const TMDB_APIKey = "d47e2f7ee2ff79fef6594d007321597e";
+var baseURL = "https://api.themoviedb.org/3/";
+var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 
 /******************************************************************************************* */
- TopTVShowPickoftheDay().then(showTopTVShow)
+
+var  watchTrailerButton =$('.watch');
+var loveButton=$('.love');
+var newFavourite = [];
+
+    
+ //Adds event listener for trailer button
+watchTrailerButton.click(displayYoutubeVideoFull);
+//Adds event listener for love button
+loveButton.click(addFavourite);
+
+
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
-    var URLOption = `${baseURL}trending/${MediaType}/day?api_key=${TMDB_APIKey}`
-    let tempArr = []
-    return $.get(URLOption)
-        .then(function (data)
-         {
-            let showList = data.results;            
-            for (var i = 0; i < showList.length; i++) {
-                tempArr.push(showList[i].name)
-            }           
-           return tempArr
-        }, function (data) {
-            console.log(data.responseJSON["status_message"])
-        }
-        )   
+  var URLOption = `${baseURL}trending/${MediaType}/day?api_key=${TMDB_APIKey}`;
+  let tempArr = [];
+  return $.get(URLOption).then(
+    function (data) {
+      let showList = data.results;
+      for (var i = 0; i < showList.length; i++) {
+        tempArr.push(showList[i].name);
+      }
+      return tempArr;
+    },
+    function (data) {
+      console.log(data.responseJSON["status_message"]);
+    }
+  );
 }
-
 
 /** Get the list of official genres for TV shows. */
 function getCategoryList() {
-    var categoryURL = `${baseURL}genre/tv/list?api_key=${TMDB_APIKey}`
-    let tempArr = []
+  var categoryURL = `${baseURL}genre/${MediaType}/list?api_key=${TMDB_APIKey}`;
+  let tempArr = [];
 
-   return $.get(categoryURL)
-        .then(function (data) {
-            let categoryList = data.genres
-            for (var i = 0; i < categoryList.length; i++) {
-                tempArr.push(categoryList[i]["name"])
-            }
-            return tempArr
-        }, function (data) {
-            console.log(data.responseJSON["status_message"])
-        }
-        )    
+  return $.get(categoryURL).then(
+    function (data) {
+      let categoryList = data.genres;
+      for (var i = 0; i < categoryList.length; i++) {
+        tempArr.push(categoryList[i]["name"]);
+      }
+      return tempArr;
+    },
+    function (data) {
+      console.log(data.responseJSON["status_message"]);
+    }
+  );
 }
 
-//Example of youtube API call with Name of movie + trailer
-//https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=Kaguya-sama: Love Is Wartrailer&type=video&key=AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ
 
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
@@ -63,10 +71,6 @@ function getCategoryList() {
 //https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10&autoplay=1;
 
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
-
-var  watchTrailerButton =$('.watch');
-var loveButton=$('.love');
-var newFavourite = [];
 
 
 
@@ -202,8 +206,8 @@ trailer.append(`
 ${url};
 </p>
 </div>
-`)
-};
+`);
+}
 
 function getYoutubeVideo(movieName) {
    
@@ -249,19 +253,87 @@ function showTopTVShow(tempArr){
     //     getYoutubeVideo(TVShowNames[i]);   
     // }
 
+  
 }
+
+
+
+/** Create category buttons dynamically using jQuery */
+function createCategoryButtons(categoryListArr) {
+  const totalButtonReq = categoryListArr.length;
+  const genreDiv = $(".genres");
+  let tempButton;
+  for (var i = 0; i < totalButtonReq; i++) {
+    tempButton = $("<button>");
+    tempButton.addClass("buttonstyle");
+    tempButton.text(categoryListArr[i]);
+    genreDiv.append(tempButton);
+  }
+}
+/**Category button click handles here */
+$(".genres").on("click", "button", function () {
+  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
+});
+
+
+/**Get show list based n category selected */
+function getShowListforSelectedCategory(categoryName) {
+  var categoryURL = `${baseURL}discover/${MediaType}?api_key=${TMDB_APIKey}&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0&with_genres=${categoryName}`;
+  let tempArr = [];
+  const heading = $(".genre-title");
+  heading.text(categoryName);
+  heading.css('font-weight',700)
+
+  return $.get(categoryURL).then(
+    function (data) {
+      let categoryList = data.results;
+      for (var i = 0; i < categoryList.length; i++) {
+        tempArr.push(categoryList[i]["name"]);
+      }
+      return tempArr;
+    },
+    function (data) {
+      console.log(data.responseJSON["status_message"]);
+    }
+  );
+}
+
+function genreListCreation(tempArr) {
+  const genreDiv = $(".genres");
+  const len = tempArr.length;
+  var ul = $("<ul>");
+  genreDiv.empty();
+  if (len) {
+    for (var i = 0; i < len; i++) {
+      var li = $("<li>");
+      var tempDiv = $("<div>");
+      li.append(`<p>${tempArr[i]}</p>`)
+      li.addClass("genreList")
+      tempDiv.addClass("selectedGenreShowPreviewDiv");
+      
+      li.append(tempDiv);
+      ul.append(li);
+    }
+    genreDiv.append(ul);
+  }
+}
+
+
+
 
 /** Inits script calling  rendering favourites and calling showTopTVShow() function */
 function init(){   
+
+     //Show video recommendation  
+
+    TopTVShowPickoftheDay().then(showTopTVShow);
     
+    getCategoryList().then(createCategoryButtons);
+
     //Search and render favourites suing local storage
     renderFavourites();
-    //Show video recommendation  
-    showTopTVShow();
-    //Adds event listener for trailer button
-    watchTrailerButton.click(displayYoutubeVideoFull);
-    //Adds event listener for love button
-    loveButton.click(addFavourite);
+
+
 
 }
 

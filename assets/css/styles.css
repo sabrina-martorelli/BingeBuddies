@@ -12,13 +12,13 @@
   * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: monospace;
+    box-sizing: border-box;    
     color: var(--text);
   }
   
   body {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
+
   }
   
   a {
@@ -26,7 +26,7 @@
   }
   
   /* GLOBAL CLASSES */
-  .row, .column {
+  /*.row, .column {
     display: flex;
   }
   
@@ -44,122 +44,126 @@
   
   .align-center {
     align-items: center;
-  }
+  }*/
 
-  /* Custom Styling */
-
+  /* BINGEBUDDIES TOP LEFT LOGO */
   .logo {
-    padding: 20px;
-    display: inline;
-    margin: 70px;
-    margin-left: 350px;
-    border-radius: 20px;
-    font-size: 20px;
-    font-family: monospace;
-    text-decoration: none;
-    border: none;
+    padding: 20px;    
     font-size: 14px;
-    font-family: inherit;
-    color: #fff;
-    height: 3em;
-    line-height: 2em;
-    text-align: center;
+     color: #fff;     
     background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
     background-size: 300%;
     border-radius: 30px;
     z-index: 1;
-    font-size: large;
+    font-weight: 700 ;
   }
+
+/* GLOBAL CLASSES */
+.row,
+.column {
+  display: flex;
+}
 
  .dropdown {
-  padding: 20px;
-  display: inline;
-  margin: 70px;
-  margin-left: 350px;
-  border-radius: 20px;
-  font-size: 20px;
-  font-family: monospace;
-  text-decoration: none;
-  border: none;
-  font-size: 14px;
-  font-family: inherit;
-  color: #fff;
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
-  background-size: 300%;
+  padding: 10px;
   border-radius: 30px;
+  font-size: 14px;
+  color: #fff; 
+  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background-size: 300%;  
   z-index: 1;
-  font-size: large;
+  font-weight: 700;
  }
 
-  .parent {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center; */
+/* WE USED THIS TO INLINE POSITION LOGO + DROPDOWN */
+  .parent { 
    display: flex;
-   justify-content: space-between;
+   justify-content:space-around;
    align-items: center;
+   margin-bottom: 20px;
+   padding:10px;   
   }
 
-  .child {
-    margin: 10px;
+  .child {   
     display: flex;
     align-items: center;
-    text-align: center;
-    margin: 0px 100px;
-    background-color: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
-  }
-
-  .hero {
-    height: 450px;
-    background-color: var(--primary);
-    border-radius: 30px;
-    margin: 0px 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .trailer {
-    height: 300px;
-    background-color: aliceblue;
-    border-radius: 30px;
-    margin: 40px;
-    padding: 100px 200px;
-    text-align: center;
-    width: 500px;
-  }
-
-  .watch {
-    background-color: var(--skin);
-    padding: 10px;
-    border-radius: 15px;
-    
-
-  }
-
-  .buttons {
-    display: flex;
-    align-items: center;
-    height: 50vh;
-    margin-left: 100px;
-    margin-right: -50px;
+    text-align: center;  
   }
 
  
+/* DROP DOWN MENU BUTTON - OVERRIDES BOOTSTRAP CSS */
+.btn {
+  border-radius: 30px;
+  height: 3em;
+  line-height: 2em;
+}
 
-  
+/* DROP DOWN MENU BUTTON - OVERRIDES BOOTSTRAP CSS */
+.btn-secondary {
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  border: 0;
+}
+
+/* CLEAR LIST BUTTON */
+.clear-list {
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  border: 0;
+  border-radius: 30px;
+  padding: 10px;
+  font-family: monospace;
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
+  height: 3em;
+  line-height: 2em;
+  color: #fff;
+}
+
+
+/* DARK BLUE / PURPLE SPACE WHICH THE TRAILER WILL EXPAND INTO IF THEY CLICK WATCH TRAILER */
+
+.hero {
+  height: 450px;
+  background-color: var(--primary);
+  border-radius: 30px;
+  margin: 0px 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* WHERE TOP PICK OF THE DAY WILL BE PLAYING */
+.trailer {
+  height: 300px;
+  background-color: aliceblue;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  padding: 100px 200px;
+  text-align: center;
+  width: 500px;
+}
+
+/* LOVE HEART ICON */
+.love {
+  margin: 147px 0px 0px 200px;
+  position: absolute;
+}
+
+/* WATCH TRAILER BUTTON */
+.watch {
+  padding: 5px;
+  border-radius: 15px;
+  position: absolute;
+  margin: 140px 0px 210px 50px;
+}
+
+/* THIS IS CUSTOM STYLING FOR THE WATCH TRAILER BUTTON ONLY */
 .fancy {
  text-decoration: none;
  position: absolute;
  border: none;
  font-size: 14px;
- font-family: inherit;
  color: #fff;
- height: 3em;
- line-height: 2em;
  text-align: center;
  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
  background-size: 300%;
@@ -168,72 +172,129 @@
 }
 
 button:hover {
- animation: ani 8s linear infinite;
- border: none;
+  animation: ani 8s linear infinite;
+  border: none;
 }
 
 @keyframes ani {
- 0% {
-  background-position: 0%;
- }
+  0% {
+    background-position: 0%;
+  }
 
- 100% {
-  background-position: 400%;
- }
+  100% {
+    background-position: 400%;
+  }
 }
 
 .fancy:before {
- content: '';
- position: absolute;
- top: -5px;
- left: -5px;
- right: -5px;
- bottom: -5px;
- z-index: -1;
- background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
- background-size: 400%;
- border-radius: 35px;
- transition: 1s;
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
 }
 
 .fancy:hover::before {
- filter: blur(20px);
+  filter: blur(20px);
 }
 
 .fancy:active {
- background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 }
 
-
+/* GENRE SECTION */
 .genre-section {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px;   
 }
-
-.genres {
-    display: flex;
-    justify-content: center;
+.genre-title
+{
+  font-weight:700;
 }
-
+.genres {  
+    display:grid;
+    grid-template-columns: 0.3fr 0.3fr 0.3fr 0.3fr;     
+}
 .next-section {
-  height: 50vh; 
-  margin-top: 220px;
+  padding:20px;  
 }
 
-
+/* GENRE BUTTON STYLING */
 .buttonstyle {
-    padding: 20px;
-    background-color: var(--softgreen);
-    border-radius: 15px;
-    margin: 20px;
+    padding: 10px;     
+    margin: 10px;
     text-align: center;
-    font-size: 14px;
-    font-family: inherit;
+    font-size: 14px;    
     color: #fff;
-    text-align: center;
     background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
     background-size: 300%;
     border-radius: 20px;
+    font-family: 'Poppins', sans-serif;    
 }
 
+/******************Added By Sanjana ******************/
+.selectedGenreShowPreviewDiv
+{
+  width: 30vw;
+  height: 30vh;
+  box-shadow: 0px -0px 5px grey; 
+  border-radius: 5px;
+}
+.genreList
+{
+  height: 35vh;
+  width: 70vw; 
+  margin:10px;
+  border: solid 1px black;
+  border-radius: 5px;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+.genreList p{
+  width: 60vw;
+  font-weight: 900;
+}
+.genres ul{
+  grid-column: 1/5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center; 
+}
+
+/* FOOTER */
+.footer-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+h5 {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+footer {
+
+  padding:10px;
+  bottom: 0;
+  right:0;
+  width: 100%;
+  background-color: rgb(79, 81, 140, 0.8);
+}
+/* GROW EFFECT */
+.grow { 
+  transition: all .2s ease-in-out; 
+  }  
+  .grow:hover { 
+  transform: scale(1.1); 
+  }
