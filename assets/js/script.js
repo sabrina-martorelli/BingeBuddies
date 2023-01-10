@@ -6,6 +6,7 @@ var MediaType = "tv"
 /********************************YOUTUBE API******************************************** */
 var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
+
 /******************************************************************************************* */
  TopTVShowPickoftheDay().then(showTopTVShow)
 
@@ -76,12 +77,12 @@ var newFavourite = [];
 //Sets onScreenID to local storage
 function storeOnScreenID(movieID, movieName){
 
-    var moviedata ={
-       id : movieID,
-       name: movieName,
+    onScreenData ={
+        id:movieID,
+        name:movieName,
     }
 
-    localStorage.setItem("onScreen", JSON.stringify(moviedata)); 
+  localStorage.setItem("onScreen", JSON.stringify(onScreenData)); 
 }
 
 //Gets onScreenID from local storage
@@ -94,10 +95,10 @@ function getOnScreenID(){
 function addFavourite()
 {
 
-   //var movieID = getOnScreenID();
+    var moviedata = getOnScreenID();
    
     //Store new favourite on localStorage
-    storeFavourites(movieId);
+    storeFavourites(moviedata.id, moviedata.name);
     //Renders favourite using localStorage
     renderFavourites();
 
@@ -139,11 +140,11 @@ function renderFavourites() {
         for (var i = 0; i < existingFavourites.length; i++) {
             var favourite= existingFavourites[i];
             //Uses the name of the city as id for future searches
-            favouritesMenu.append(`<button class='buttonstyle' id='favourite-button${i}'>${favourite}</button>`);
+            favouritesMenu.append(`<button class='buttonstyle' id='favourite-button${favourite.id}'>${favourite.name}</button>`);
            
              //Adds listener for new history button
-            var newButton = $(`#favourite-button${i}`);
-            newButton.click(getYoutubeVideo(favourite));
+            var newButton = $(`#favourite-button${favourite.id}`);
+            newButton.click(getYoutubeVideo(favourite.name));
         }
     }
    
@@ -152,15 +153,21 @@ function renderFavourites() {
 
 
 /** Store favourites into localStorage */
-function storeFavourites(movieID) { 
+function storeFavourites(movieID, movieName) { 
+
+    var newF ={
+        id:movieID,
+        name:movieName,
+    };
+
     //Gets favourites searches from local storage
     var existingSearch = JSON.parse(localStorage.getItem("favourites"));
     if (existingSearch !== null) {
         newFavourite = existingSearch;
     }
     //Only stores favourites that are not on the local storage already
-    if (!newFavourite.includes(movieID)) {
-        newFavourite.push(movieID);
+    if (!newFavourite.includes(newF)) {
+        newFavourite.push(newF);
     }
     localStorage.setItem("favourites", JSON.stringify(newFavourite)); 
 }
@@ -188,25 +195,25 @@ function displayYoutubeVideo (url){
 function getYoutubeVideo(movieName) {
  
    
-    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-    //     .then(function (data) {
+     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+        .then(function (data) {
           
-    //         //Gets movie id from searched tv show or movie
-    //         movieId=data.items[0].id.videoId;
+            //Gets movie id from searched tv show or movie
+            movieId=data.items[0].id.videoId;
 
-           // Stores the video that is on screen to use as full mode
+          // Stores the video that is on screen to use as full mode
           
            //HARDCODE VARS for TESTING
-             var movieId = 'tqVVrTvrI8U';
-             movieName= "The Glory";
+           //  var movieId = 'tqVVrTvrI8U';
+            // movieName= "The Glory";
              storeOnScreenID(movieId,movieName);
             
-    //         //If the tv show / movie was found calls function to show video on on page
-    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+            //If the tv show / movie was found calls function to show video on on page
+            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-    //     });
+        });
 
-     displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+    // displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
