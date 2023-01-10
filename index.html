@@ -1,76 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BingeBuddies</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<header>
-    <h1 class="logo">BingeBuddies</h1>
-</header>
-<body>
-
-<div class="hero">
-
-<div class="buttons">
-
-    <button class="watch">
-        Watch Trailer?
-    </button>
-
-    <button class="no-thanks">
-        No Thanks
-    </button>
-
-</div>
-
-<section class="genre-section">
-    <h4 class="genre-title"> What <strong>genre</strong> would you like? </h4>
-</section>
-
-<div class="genres"> 
-
-<button class="comedy buttonstyle">
-    Comedy
-</button>
-
-<button class="action buttonstyle">
- Action
- </button>
-
-<button class="sci-fi buttonstyle">
-Sci-Fi 
-</button>
-
-<button class="horror buttonstyle">
-    Horror </button>
-
- <button class="romance buttonstyle">
-        Romance </button>
-
-<button class="drama buttonstyle">
-            Drama </button>
-
-            <button class="thriller buttonstyle">
-                Thriller </button>
-
-                <button class="fantasy buttonstyle">
-                    Fantasy </button>
-
-</div>
-
-</div>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
 
 
+  <body>
+      <!-- LOGO AND DROPDOWN BUTTON -->
+  <header class="parent">
+    <h1 class="logo child">BingeBuddies</h1>
+
+    <div class="dropdown child">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Favourites
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </header>
+    <!-- BIG HERO SPACE -->
+    <div class="hero">
+      <!-- TRAILER WHITE SPACE FOR TOP PICK OF DAY -->
+      <div class="trailer">
+        <!-- HEART ICON -->
+        <i class="fa-regular fa-heart love fa-2x grow"></i>
+        <div class="buttons">
+          <button class="watch fancy">Watch Trailer?</button>
+        </div>
+      </div>
+    </div>
+
+    <!--CLEAR LIST BUTTON-->
+      <button class="clear-list ">Clear Favourites</button>
+    </div>
     
+    <!--- ERROR MESSAGE MODAL -->
+    <!-- Button trigger for modal -->
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Launch demo modal
+    </button> -->
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-<!-- Local js file -->
-<script src="assets/js/script.js"></script>  
-</body>
+    <!-- Error Message Modal -->
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">Error!</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-section">
+      <section class="genre-section">
+        <h4 class="genre-title">What genre would you like?</h4>
+      </section>
+      <div class="genres"></div>     
+    </div>
+      
+    <footer class=""bg-light>
+      <div class="footer-icons">
+        <i class="fa-brands fa-github fa-3x grow"></i>
+        <i class="fa-brands fa-twitter fa-3x grow"></i>
+        <i class="fa-brands fa-facebook fa-3x grow"></i>
+      </div>      
+      <h5><i class="fa-solid fa-copyright"></i> BingeBuddies 2023</h5>
+    </footer>
+
+    <!-- jQuery -->
+    <script
+      src="https://kit.fontawesome.com/b272d902e8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.2.min.js"
+      integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Local js file -->  
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
