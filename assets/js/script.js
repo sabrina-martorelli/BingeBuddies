@@ -126,7 +126,8 @@ function createCategoryButtons(categoryListArr) {
 
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
-
+// src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
+ 
 
 
 var  watchTrailerButton =$('.watch');
@@ -136,7 +137,7 @@ var newFavourite = [];
 
     
  //Adds event listener for trailer button
-//watchTrailerButton.click(displayYoutubeVideoFull);
+watchTrailerButton.click(displayYoutubeVideoFull);
 //Adds event listener for love button
 loveButton.click(addFavourite);
 
@@ -144,8 +145,7 @@ loveButton.click(addFavourite);
 clearFavouritesButton.click(removeFavourite);
 
 
-
-//Sets onScreenID to local storage
+/** Sets onScreenID data on local storage */
 function storeOnScreenID(movieID, movieName){
 
     onScreenData ={
@@ -156,7 +156,8 @@ function storeOnScreenID(movieID, movieName){
   localStorage.setItem("onScreen", JSON.stringify(onScreenData)); 
 }
 
-//Gets onScreenID from local storage
+
+//Gets onScreenID data from local storage
 function getOnScreenID(){
 
    return JSON.parse(localStorage.getItem("onScreen")); 
@@ -170,6 +171,8 @@ function removeFavourite(){
     localStorage.clear();
     //Creates local storage again for ScreenID
     storeOnScreenID(saveOnScreen.id,saveOnScreen.name);
+
+    renderFavourites();
 
 }
 
@@ -190,19 +193,24 @@ function addFavourite()
 
 
 // /** Display youtube video on page */
-// function displayYoutubeVideoFull () {
+ function displayYoutubeVideoFull () {
 
-//     //Gets movie id from local storage
-//     var onScreenID = getOnScreenID();
+    //Gets movie id from local storage
+    var onScreenID = getOnScreenID();
 
-//     //Creates URL for full play
-//     var urlFullScreen=`https://www.youtube.com/embed/${onScreenID}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
+    //Creates URL for full play
+    var urlFullScreen=`https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
     
 
-//     //play in full screen
-//     //console.log(urlFullScreen);
+    //Add iframe to screen
+    console.log(urlFullScreen);
+    // <iframe class="videoContainer__video" width="1920" height="1080" 
+    // src= 'https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1'
+    // frameborder="0"></iframe>
 
-// };
+   
+
+};
 
 
 //Render favourites using localStorage
