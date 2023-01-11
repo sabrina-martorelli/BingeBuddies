@@ -159,13 +159,12 @@ align-items: center;
 
 /* WHERE TOP PICK OF THE DAY WILL BE PLAYING */
 .trailer {
-height: 300px;
+
 background-color: aliceblue;
 border-radius: 30px;
-margin-bottom: 40px;
-padding: 100px 200px;
+
 text-align: center;
-width: 500px;
+
 }
 
 /* LOVE HEART ICON */
@@ -323,4 +322,5 @@ transition: all .2s ease-in-out;
 .grow:hover { 
 transform: scale(1.1); 
 }
+
 
