@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BingeBuddies</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
@@ -14,112 +16,62 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-
-
   <body>
+    <div class="fullscreen">
+      <div class="screen"></div>
+    </div>
       <!-- LOGO AND DROPDOWN BUTTON -->
   <header class="parent">
     <h1 class="logo child">BingeBuddies</h1>
-
-    <div class="dropdown child">
+    <div class="dropdown">
       <button
         class="btn btn-secondary dropdown-toggle"
         type="button"
-        id="dropdownMenuButton"
+        id="dropdownMenuButton1"
         data-toggle="dropdown"
-        aria-haspopup="true"
         aria-expanded="false"
       >
-        Favourites
+      Favourites
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
+        <!-- <a class="dropdown-item" href="#">Action</a>
         <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" href="#">Something else here</a> -->
       </div>
     </div>
   </header>
     <!-- BIG HERO SPACE -->
     <div class="hero">
       <!-- TRAILER WHITE SPACE FOR TOP PICK OF DAY -->
-      <div class="trailer">
-        <!-- HEART ICON -->
-        <i class="fa-regular fa-heart love fa-2x grow"></i>
-        <div class="buttons">
-          <button class="watch fancy">Watch Trailer?</button>
-        </div>
+    </div>
+       <!-- HEART ICON -->
+      <i class="fa-regular fa-heart love fa-2x grow"></i>
+      <div class="buttons">
+        <button class="watch fancy">Watch Trailer?</button>
       </div>
-    </div>
-
-    <!--CLEAR LIST BUTTON-->
-      <button class="clear-list ">Clear Favourites</button>
-    </div>
     
-    <!--- ERROR MESSAGE MODAL -->
-    <!-- Button trigger for modal -->
-    <!-- <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#exampleModal"
-    >
-      Launch demo modal
-    </button> -->
-
-    <!-- Error Message Modal -->
-    <div
-      class="modal fade"
-      id="errorModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="errorModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="errorModalLabel">Error!</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> A problem has been occurred while submitting your data.
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
     <div class="next-section">
       <section class="genre-section">
         <h4 class="genre-title">What genre would you like?</h4>
       </section>
-      <div class="genres"></div>     
+      <div class="genres"></div>
     </div>
-      
     <footer class=""bg-light>
       <div class="footer-icons">
         <i class="fa-brands fa-github fa-3x grow"></i>
         <i class="fa-brands fa-twitter fa-3x grow"></i>
         <i class="fa-brands fa-facebook fa-3x grow"></i>
-      </div>      
+      </div>
       <h5><i class="fa-solid fa-copyright"></i> BingeBuddies 2023</h5>
     </footer>
-
     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script
       src="https://kit.fontawesome.com/b272d902e8.js"
       crossorigin="anonymous"
@@ -129,7 +81,7 @@
       integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
       crossorigin="anonymous"
     ></script>
-    <!-- Local js file -->  
+    <!-- Local js file -->
     <script src="assets/js/script.js"></script>
   </body>
 </html>
