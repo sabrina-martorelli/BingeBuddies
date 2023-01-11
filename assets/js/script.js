@@ -3,9 +3,11 @@ var baseURL = "https://api.themoviedb.org/3/";
 var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
-var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+//var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 //var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
+
+var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
 
 /******************************************************************************************* */
 
@@ -248,8 +250,7 @@ function renderFavourites() {
             var newButton = $(`#${favourite.id}`);   
        
             newButton.on('click', function () { 
-            var url = `https://www.youtube.com/embed/${this.id}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`
-            displayYoutubeVideo(url);
+            displayYoutubeVideo(this.id);
             });
         }
     }
@@ -282,8 +283,11 @@ function storeFavourites(movieID, movieName) {
 
 
 /** Display youtube video on page */
-function displayYoutubeVideo (url){
+function displayYoutubeVideo (movieId){
     
+    
+    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
+    console.log(url);
     var hero = $('.hero');
   
     hero.html('');
@@ -299,27 +303,25 @@ function displayYoutubeVideo (url){
 
 
 function getYoutubeVideo(movieName) {
-   
-    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-    //     .then(function (data) {
-          
-    //         //Gets movie id from searched tv show or movie
-    //         movieId=data.items[0].id.videoId;
-        
-    //        // Stores the video that is on screen to use as full mode
-          
-    //         storeOnScreenID(movieId,movieName);
-            
-    //         //If the tv show / movie was found calls function to show video on on page
-    //      delete this   displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
-            //USE NEXT RETURN
-    // return https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1
-    //     });
+   console.log(movieName);
+    return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+        .then(function (data) {
+            //Gets movie id from searched tv show or movie
+            movieId=data.items[0].id.videoId;
+           // Stores the video that is on screen to use as full mode
+            storeOnScreenID(movieId,movieName);
+            console.log(movieId);
+             return movieId;
+        }
+     ,
+     function (data) {
+      console.log(data.responseJSON["status_message"]);
+     }
+    );
  
-    //return`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
-    
-    var movieId ='smTK_AeAPHs?';
-    return movieId;
+   
+    // var movieId ='smTK_AeAPHs?';
+    // return movieId;
 
 }
 
@@ -334,11 +336,17 @@ function showTopTVShow(tempArr){
     //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
     var video= Math.floor(Math.random()* (TVShowNames.length-1));  
     //Gets url for video
-    var movieId = getYoutubeVideo(TVShowNames[video]);
-    //Generates url with autoplay on
-    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
-    //Display video on page
-    displayYoutubeVideo(url);
+    //var movieId = getYoutubeVideo(TVShowNames[video]);
+
+    getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
+
+//  //Generates url with autoplay on
+//  var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
+//  console.log(url);
+//  //Display video on page
+//  displayYoutubeVideo(url);
+
+   
     }
 
 
