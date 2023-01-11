@@ -18,10 +18,10 @@ On clicking the list item user can see the selected show's trailer on full scree
 ## Credits
 Github handles:
 
-1. sanjana-1604
-2. sabrina-martorelli
-3. nrai14 
-4. lauralp92
+1. [sanjana-1604](https://github.com/sanjana-1604)
+2. [sabrina-martorelli](https://github.com/sabrina-martorelli)
+3. [nrai14](https://github.com/nrai14) 
+4. [lauralp92](https://github.com/lauralp92)
 
 ## License
 
