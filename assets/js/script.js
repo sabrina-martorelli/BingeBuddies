@@ -102,8 +102,11 @@ function createCategoryButtons(categoryListArr) {
         li.addClass("genreList")
         tempDiv.addClass("selectedGenreShowPreviewDiv");
         
-        var url = getYoutubeVideo(tempArr[i]);
-
+        //Gets video id 
+        var movieId = getYoutubeVideo(tempArr[i]);
+        
+        //Generates url of full video with autoplay off
+        var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1`;  
 
         tempDiv.prepend(`
         <iframe id="iframe-category" class='trailer'  width="300" height="150" 
@@ -246,7 +249,6 @@ function renderFavourites() {
        
             newButton.on('click', function () { 
             var url = `https://www.youtube.com/embed/${this.id}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`
-            
             displayYoutubeVideo(url);
             });
         }
@@ -314,8 +316,10 @@ function getYoutubeVideo(movieName) {
     // return https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1
     //     });
  
-    return`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
+    //return`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
     
+    var movieId ='smTK_AeAPHs?';
+    return movieId;
 
 }
 
@@ -330,7 +334,9 @@ function showTopTVShow(tempArr){
     //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
     var video= Math.floor(Math.random()* (TVShowNames.length-1));  
     //Gets url for video
-    var url = getYoutubeVideo(TVShowNames[video]);
+    var movieId = getYoutubeVideo(TVShowNames[video]);
+    //Generates url with autoplay on
+    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
     //Display video on page
     displayYoutubeVideo(url);
     }
