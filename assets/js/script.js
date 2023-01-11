@@ -258,7 +258,7 @@ function getShortUrl(movieData) {
 
 /** Sets onScreenID data on local storage */
 function storeOnScreenID(movieID, movieName) {
-
+ console.log('entra');
     onScreenData = {
         id: movieID,
         name: movieName,
@@ -316,7 +316,10 @@ function displayYoutubeVideoFull() {
     var urlFullScreen = `https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&modestbranding=1&showinfo=0&autoplay=1&mute=1`
 
     //Add iframe to popup screen
-    var layer = $(".fullscreen")  
+    var layer = $(".fullscreen") ;
+
+    layer.html('');
+    
     layer.append(`
     <iframe id="popup" class='trailer'  width="1920" height="1080" 
     src="${urlFullScreen}" frameborder="1">
@@ -351,7 +354,10 @@ function renderFavourites() {
 
             newlink.on('click', function () {
                 //Send id as array
-                displayYoutubeVideo([this.id])
+                displayYoutubeVideo([this.id]);
+                //Creates local storage again for ScreenID
+               storeOnScreenID(this.id, this.text);
+               
             });
         }
 
@@ -395,6 +401,8 @@ function storeFavourites(movieID, movieName) {
 
 /** Display youtube video on page */
 function displayYoutubeVideo(movieData) {
+
+    
 
     //Creates url base on movieData : id and name
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&start=0&end=15&autoplay=1&mute=0`;
