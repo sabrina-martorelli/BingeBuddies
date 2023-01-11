@@ -11,6 +11,21 @@ var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
 /******************************************************************************************* */
 
+var watchTrailerButton = $('.watch');
+var loveButton = $('.love');
+var clearFavouritesButton = $('#clear-list');
+var newFavourite = [];
+
+
+//Adds event listener for trailer button
+watchTrailerButton.click(displayYoutubeVideoFull);
+
+//Adds event listener for love button
+loveButton.click(addFavourite);
+
+//Adds event listener for love button
+clearFavouritesButton.click(removeFavourite);
+
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
@@ -49,8 +64,6 @@ function getCategoryList() {
     );
 }
 
-
-
 /** Create category buttons dynamically using jQuery */
 function createCategoryButtons(categoryListArr) {
     const totalButtonReq = categoryListArr.length;
@@ -67,7 +80,6 @@ function createCategoryButtons(categoryListArr) {
 $(".genres").on("click", "button", function () {
     getShowListforSelectedCategory($(this).text()).then(genreListCreation);
 });
-
 
 /**Get show list based n category selected */
 function getShowListforSelectedCategory(categoryName) {
@@ -120,7 +132,6 @@ function genreListCreation(tempArr) {
     }
 }
 
-
 /** Generates url of full video with autoplay off  and creates iframe for list*/
 function getShortUrl(movieId) {
 
@@ -144,24 +155,6 @@ function getShortUrl(movieId) {
 
 // src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
 
-
-
-var watchTrailerButton = $('.watch');
-var loveButton = $('.love');
-var clearFavouritesButton = $('#clear-list');
-var newFavourite = [];
-
-
-//Adds event listener for trailer button
-watchTrailerButton.click(displayYoutubeVideoFull);
-
-//Adds event listener for love button
-loveButton.click(addFavourite);
-
-//Adds event listener for love button
-clearFavouritesButton.click(removeFavourite);
-
-
 /** Sets onScreenID data on local storage */
 function storeOnScreenID(movieID, movieName) {
 
@@ -172,7 +165,6 @@ function storeOnScreenID(movieID, movieName) {
 
     localStorage.setItem("onScreen", JSON.stringify(onScreenData));
 }
-
 
 /**Gets onScreenID data from local storage */
 function getOnScreenID() {
@@ -196,7 +188,6 @@ function removeFavourite() {
 
 }
 
-
 /**Adds a new favourite to the list and display on menu */
 function addFavourite() {
     //Gets id of current video from local storage
@@ -212,8 +203,6 @@ function addFavourite() {
     loveButton.addClass('fas fa-heart love fa-2x grow')
 
 }
-
-
 
 /** Display youtube video on page */
 function displayYoutubeVideoFull() {
@@ -231,7 +220,6 @@ function displayYoutubeVideoFull() {
     // frameborder="0"></iframe>
 
 };
-
 
 /** Render favourites using localStorage */
 function renderFavourites() {
@@ -269,8 +257,6 @@ function renderFavourites() {
 
 }
 
-
-
 /** Store favourites into localStorage */
 function storeFavourites(movieID, movieName) {
 
@@ -294,8 +280,6 @@ function storeFavourites(movieID, movieName) {
     localStorage.setItem("favourites", JSON.stringify(newFavourite));
 }
 
-
-
 /** Display youtube video on page */
 function displayYoutubeVideo(movieId) {
 
@@ -316,7 +300,6 @@ function displayYoutubeVideo(movieId) {
     `)
 
 };
-
 
 /** Gets movie information from youTube API using movieName */
 function getYoutubeVideo(movieName) {
@@ -345,8 +328,6 @@ function getYoutubeVideo(movieName) {
 
 }
 
-
-
 /** Show video on main screen base on a random search */
 function showTopTVShow(TVShowNames) {
 
@@ -362,8 +343,6 @@ function showTopTVShow(TVShowNames) {
     }
 
 }
-
-
 
 /** Inits function */
 function init() {
