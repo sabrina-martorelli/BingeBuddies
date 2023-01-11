@@ -102,6 +102,15 @@ function createCategoryButtons(categoryListArr) {
         li.addClass("genreList")
         tempDiv.addClass("selectedGenreShowPreviewDiv");
         
+        var url = getYoutubeVideo(tempArr[i]);
+
+
+        tempDiv.prepend(`
+        <iframe id="iframe-category" class='trailer'  width="300" height="150" 
+        src="${url}" frameborder="0">
+        </iframe>
+        `)
+       
         li.append(tempDiv);
         ul.append(li);
       }
@@ -300,12 +309,13 @@ function getYoutubeVideo(movieName) {
     //         storeOnScreenID(movieId,movieName);
             
     //         //If the tv show / movie was found calls function to show video on on page
-    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
-           
+    //      delete this   displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+            //USE NEXT RETURN
+    // return https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1
     //     });
-   
-    displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
-        
+ 
+    return`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
+    
 
 }
 
@@ -319,14 +329,12 @@ function showTopTVShow(tempArr){
     var TVShowNames = tempArr;    
     //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
     var video= Math.floor(Math.random()* (TVShowNames.length-1));  
-    //Passing only 1 element for testing
-    getYoutubeVideo(TVShowNames[video]);
-
+    //Gets url for video
+    var url = getYoutubeVideo(TVShowNames[video]);
+    //Display video on page
+    displayYoutubeVideo(url);
     }
-    /**DO NOT DELETE FOR NOW IN CASE WE SHOW MORE THAN 1 VIDEO*/
-    // for (var i = 0; i < TVShowNames.length; i++){
-    //     getYoutubeVideo(TVShowNames[i]);   
-    // }
+
 
   
 }
