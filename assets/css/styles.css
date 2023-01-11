@@ -309,7 +309,7 @@ transform: scale(1.1);
 }
 .fullscreen
 {
-  opacity: 0.5;
+  opacity: 1;
   width:0;
   height:100%;
   position:fixed;
@@ -330,6 +330,12 @@ transform: scale(1.1);
 }
 .fullscreen a:hover , .fullscreen a:focus
 {
-    color: black; 
+  color: black; 
   text-decoration: none;
+}
+
+#clear-list{
+  color: white;
+  background-color: var(--primary);
+
 }
