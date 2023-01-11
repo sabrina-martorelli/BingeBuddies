@@ -13,14 +13,11 @@ var MediaType = "tv";
 
 /******************************************************************************************* */
 
-var watchTrailerButton = $('.watch');
-var loveButton = $('.love');
 
+var loveButton = $('.love');
 var newFavourite = [];
 
 
-//Adds event listener for trailer button
-watchTrailerButton.click(displayYoutubeVideoFull);
 
 //Adds event listener for love button
 loveButton.click(addFavourite);
@@ -227,7 +224,15 @@ function displayYoutubeVideoFull() {
     var urlFullScreen = `https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&modestbranding=1&showinfo=0&autoplay=1&mute=1`
 
     //Add iframe to popup screen
-    console.log(urlFullScreen);
+
+    var layer = $(".fullscreen")  
+    console.log('good url',layer);
+
+    layer.append(`
+    <iframe id="popup" class='trailer'  width="1920" height="1080" 
+    src="${layer}" frameborder="1">
+    </iframe>
+    `);
 
     //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
     // src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
@@ -460,17 +465,24 @@ init();
 $(".watch").click(()=>{
   console.log("clicked")
   createFullScreen()
+  
 })
 
 function createFullScreen()
 { 
-  const fullScreenDiv = $(".fullscreen")  
-  fullScreenDiv.css("width","100%")  
+  console.log('enter');
+  const fullScreenDiv = $(".fullscreen");
+  fullScreenDiv.css("width","100%");
+  displayYoutubeVideoFull();
+
 }
 $(".closebtn").click(()=>{
   
   const fullScreenDiv = $(".fullscreen")  
   fullScreenDiv.css("width","0%") 
+
+  var video=$("#popup") 
+  video.remove();
 
 })
 $(".backBtn").click(()=>
