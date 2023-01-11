@@ -118,15 +118,17 @@ function genreListCreation(tempArr) {
             li.append(`<p>${tempArr[i]}</p>`)
             li.addClass("genreList")
            
+            //Removes spaces on names
             var classID=tempArr[i].trim();
+            //Adds _ between words on movie names
             classID=classID.replace(/ /g,"_");
-            console.log(`selectedGenreShowPreviewDiv${classID}`);
+            // Create class based on movie name
             tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
 
             li.append(tempDiv);
             ul.append(li);
 
-            //Gets video id 
+            //Gets video id to generate url
             getYoutubeVideo(tempArr[i]).then(getShortUrl);
 
         
@@ -139,12 +141,14 @@ function genreListCreation(tempArr) {
 /** Generates url of full video with autoplay off  and creates iframe for list*/
 function getShortUrl(movieData) {
 
-    
+    //Removes spaces on names
     var classID= movieData[1].trim();
+    
+    //Adds _ between words on movie names
     classID=classID.replace(/ /g,"_");
+    
     //Gets div to insert iframe
     var tempDiv = $(`.selectedGenreShowPreviewDiv${classID}`);
-    console.log(`selectedGenreShowPreviewDiv${classID}`);
    
     //Creates url base on movieId
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0`;
