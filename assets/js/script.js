@@ -3,17 +3,20 @@ var baseURL = "https://api.themoviedb.org/3/";
 var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
-var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+//var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 //var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
 //var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
 
+ var youtubeKey = "AIzaSyCm6HEMuVqhQCJ9cgt2NxCE6UBeMeVJivE";
+
+
 /******************************************************************************************* */
 
 var watchTrailerButton = $('.watch');
 var loveButton = $('.love');
-var clearFavouritesButton = $('#clear-list');
+
 var newFavourite = [];
 
 
@@ -23,8 +26,7 @@ watchTrailerButton.click(displayYoutubeVideoFull);
 //Adds event listener for love button
 loveButton.click(addFavourite);
 
-//Adds event listener for love button
-clearFavouritesButton.click(removeFavourite);
+
 
 
 /*Get the daily trending items name array*/
@@ -183,6 +185,7 @@ function getOnScreenID() {
 /**Cleans Favourites list */
 function removeFavourite() {
 
+    console.log('entra');
     //Save on ScreenID data
     var saveOnScreen = getOnScreenID();
 
@@ -236,12 +239,12 @@ function displayYoutubeVideoFull() {
 
 /** Render favourites using localStorage */
 function renderFavourites() {
-
+ 
     //Get existing favourites data from localStorage
     var existingFavourites = JSON.parse(localStorage.getItem("favourites"));
 
     //Gets Menu section
-    favouritesMenu = $('#dropdownMenuButton');
+    favouritesMenu = $('.dropdown-menu');
 
     //Cleans html on menu to show buttons
     favouritesMenu.html('');
@@ -254,7 +257,7 @@ function renderFavourites() {
             var favourite = existingFavourites[i];
 
             //Adds new button to Menu
-            favouritesMenu.append(`<button class='buttonstyle' id='${favourite.id}'>${favourite.name}</button>`);
+            favouritesMenu.append(`<a class='dropdown-item' id='${favourite.id}'>${favourite.name}</a>`);
 
             //Adds listener for new button
             var newButton = $(`#${favourite.id}`);
@@ -266,8 +269,16 @@ function renderFavourites() {
         }
 
         //Adds clear favourites as last button on the list
-        favouritesMenu.append(`<button class="buttonstyle" id="clear-list">Clear Favourites</button>`);
+        favouritesMenu.append(`<a class="dropdown-item" id="clear-list">Clear Favourites</a>`);
+        
+        var clearFavouritesButton = $('#clear-list');
+        //Adds event listener for love button
+        clearFavouritesButton.click(removeFavourite);
 
+    }
+    else{
+
+        favouritesMenu.html('Use the heart icon to add favourites to your list');
     }
 
 }
@@ -359,7 +370,7 @@ function showTopTVShow(TVShowNames) {
 function init() {
 
     //Show video recommendation  
-    TopTVShowPickoftheDay().then(showTopTVShow);
+    //TopTVShowPickoftheDay().then(showTopTVShow);
 
     //Gets and show category list
     getCategoryList().then(createCategoryButtons);
