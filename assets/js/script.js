@@ -59,6 +59,70 @@ function getCategoryList() {
 }
 
 
+
+/** Create category buttons dynamically using jQuery */
+function createCategoryButtons(categoryListArr) {
+    const totalButtonReq = categoryListArr.length;
+    const genreDiv = $(".genres");
+    let tempButton;
+    for (var i = 0; i < totalButtonReq; i++) {
+      tempButton = $("<button>");
+      tempButton.addClass("buttonstyle");
+      tempButton.text(categoryListArr[i]);
+      genreDiv.append(tempButton);
+    }
+  }
+  /**Category button click handles here */
+  $(".genres").on("click", "button", function () {
+    getShowListforSelectedCategory($(this).text()).then(genreListCreation);
+  });
+  
+  
+  /**Get show list based n category selected */
+  function getShowListforSelectedCategory(categoryName) {
+    var categoryURL = `${baseURL}discover/${MediaType}?api_key=${TMDB_APIKey}&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0&with_genres=${categoryName}`;
+    let tempArr = [];
+    const heading = $(".genre-title");
+    heading.text(categoryName);
+    heading.css('font-weight',700)
+  
+    return $.get(categoryURL).then(
+      function (data) {
+        let categoryList = data.results;
+        for (var i = 0; i < categoryList.length; i++) {
+          tempArr.push(categoryList[i]["name"]);
+        }
+        return tempArr;
+      },
+      function (data) {
+        console.log(data.responseJSON["status_message"]);
+      }
+    );
+  }
+  
+  function genreListCreation(tempArr) {
+    const genreDiv = $(".genres");
+    const len = tempArr.length;
+    var ul = $("<ul>");
+    genreDiv.empty();
+    if (len) {
+      for (var i = 0; i < len; i++) {
+        var li = $("<li>");
+        var tempDiv = $("<div>");
+        li.append(`<p>${tempArr[i]}</p>`)
+        li.addClass("genreList")
+        tempDiv.addClass("selectedGenreShowPreviewDiv");
+        
+        li.append(tempDiv);
+        ul.append(li);
+      }
+      genreDiv.append(ul);
+    }
+  }
+  
+  
+  
+
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
 
@@ -142,17 +206,24 @@ function renderFavourites() {
     if (existingFavourites) {
         for (var i = 0; i < existingFavourites.length; i++) {
             var favourite= existingFavourites[i];
+           
             //Uses the name of the city as id for future searches
-            favouritesMenu.append(`<button class='buttonstyle' id='favourite-button${favourite.id}'>${favourite.name}</button>`);
+            favouritesMenu.append(`<button class='buttonstyle' id='${favourite.id}'>${favourite.name}</button>`);
            
              //Adds listener for new history button
-            var newButton = $(`#favourite-button${favourite.id}`);
-            newButton.click(getYoutubeVideo(favourite.name));
+            var newButton = $(`#${favourite.id}`);   
+       
+            newButton.on('click', function () { 
+            var url = `https://www.youtube.com/embed/${this.id}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`
+
+            displayYoutubeVideo(url);
+            });
         }
     }
    
 
 }
+
 
 
 /** Store favourites into localStorage */
@@ -196,23 +267,22 @@ function displayYoutubeVideo (url){
 
 function getYoutubeVideo(movieName) {
    
-     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-        .then(function (data) {
+    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+    //     .then(function (data) {
           
-            //Gets movie id from searched tv show or movie
-            movieId=data.items[0].id.videoId;
-            console.log(movieName);
-            console.log(movieId);
-           // Stores the video that is on screen to use as full mode
+    //         //Gets movie id from searched tv show or movie
+    //         movieId=data.items[0].id.videoId;
+    //     
+    //        // Stores the video that is on screen to use as full mode
           
-            storeOnScreenID(movieId,movieName);
+    //         storeOnScreenID(movieId,movieName);
             
-            //If the tv show / movie was found calls function to show video on on page
-            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+    //         //If the tv show / movie was found calls function to show video on on page
+    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-        });
-
-    // displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+    //     });
+    console.log('favourites');
+     displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
@@ -238,69 +308,6 @@ function showTopTVShow(tempArr){
 
   
 }
-
-
-
-/** Create category buttons dynamically using jQuery */
-function createCategoryButtons(categoryListArr) {
-  const totalButtonReq = categoryListArr.length;
-  const genreDiv = $(".genres");
-  let tempButton;
-  for (var i = 0; i < totalButtonReq; i++) {
-    tempButton = $("<button>");
-    tempButton.addClass("buttonstyle");
-    tempButton.text(categoryListArr[i]);
-    genreDiv.append(tempButton);
-  }
-}
-/**Category button click handles here */
-$(".genres").on("click", "button", function () {
-  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
-});
-
-
-/**Get show list based n category selected */
-function getShowListforSelectedCategory(categoryName) {
-  var categoryURL = `${baseURL}discover/${MediaType}?api_key=${TMDB_APIKey}&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0&with_genres=${categoryName}`;
-  let tempArr = [];
-  const heading = $(".genre-title");
-  heading.text(categoryName);
-  heading.css('font-weight',700)
-
-  return $.get(categoryURL).then(
-    function (data) {
-      let categoryList = data.results;
-      for (var i = 0; i < categoryList.length; i++) {
-        tempArr.push(categoryList[i]["name"]);
-      }
-      return tempArr;
-    },
-    function (data) {
-      console.log(data.responseJSON["status_message"]);
-    }
-  );
-}
-
-function genreListCreation(tempArr) {
-  const genreDiv = $(".genres");
-  const len = tempArr.length;
-  var ul = $("<ul>");
-  genreDiv.empty();
-  if (len) {
-    for (var i = 0; i < len; i++) {
-      var li = $("<li>");
-      var tempDiv = $("<div>");
-      li.append(`<p>${tempArr[i]}</p>`)
-      li.addClass("genreList")
-      tempDiv.addClass("selectedGenreShowPreviewDiv");
-      
-      li.append(tempDiv);
-      ul.append(li);
-    }
-    genreDiv.append(ul);
-  }
-}
-
 
 
 
