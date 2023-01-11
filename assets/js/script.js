@@ -105,38 +105,127 @@ function getShowListforSelectedCategory(categoryName) {
     );
 }
 
+
+/** Create category buttons dynamically using jQuery */
+function createCategoryButtons(categoryListArr) {
+  const totalButtonReq = categoryListArr.length;
+  const genreDiv = $(".genres");
+  let tempButton;
+  for (var i = 0; i < totalButtonReq; i++) {
+    tempButton = $("<button>");
+    tempButton.addClass("buttonstyle");
+    tempButton.text(categoryListArr[i]);
+    genreDiv.append(tempButton);
+  }
+}
+/**Category button click handles here */
+$(".genres").on("click", "button", function () {
+  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
+});
+
+
+/**Get show list based n category selected */
+function getShowListforSelectedCategory(categoryName) {
+  var categoryURL = `${baseURL}discover/${MediaType}?api_key=${TMDB_APIKey}&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0&with_genres=${categoryName}`;
+  let tempArr = [];
+  const heading = $(".genre-title");
+  heading.text(categoryName);
+  heading.css('font-weight',700)
+
+  return $.get(categoryURL).then(
+    function (data) {
+      let categoryList = data.results;
+      for (var i = 0; i < categoryList.length; i++) {
+        tempArr.push(categoryList[i]["name"]);
+      }
+      return tempArr;
+    },
+    function (data) {
+      console.log(data.responseJSON["status_message"]);
+    }
+  );
+}
+
+/**Creates genre List show  */
 function genreListCreation(tempArr) {
-    const genreDiv = $(".genres");
-    //const len = tempArr.length;
-    const len = 5;
-    var ul = $("<ul>");
-    genreDiv.empty();
-    if (len) {
-        for (var i = 0; i < len; i++) {
-            var li = $("<li>");
-            var tempDiv = $("<div>");
-            li.append(`<p>${tempArr[i]}</p>`)
-            li.addClass("genreList")
-           
-            //Removes spaces on names
-            var classID=tempArr[i].trim();
+  const genreDiv = $(".genres");
+  //const len = tempArr.length;
+  const len = 5;
+  var ul = $("<ul>");
+  genreDiv.empty();
+  const button = $(".backBtn");
+  button.css("visibility","visible");
+  
+  if (len) {
+    for (var i = 0; i < len; i++) {
+      var li = $("<li>");
+      var tempDiv = $("<div>");
+      li.append(`<p>${tempArr[i]}</p>`);
+      li.addClass("genreList");
+
+    
+      //Removes spaces on names
+      var classID=tempArr[i].trim();
+            
             //Adds _ between words on movie names
             classID=classID.replace(/ /g,"_");
+            console.log(classID);
             // Create class based on movie name
             tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
+            console.log(`selectedGenreShowPreviewDiv${classID}`)
+      
 
-            li.append(tempDiv);
-            ul.append(li);
+      li.append(tempDiv);
+      ul.append(li);
 
-            //Gets video id to generate url
-            getYoutubeVideo(tempArr[i]).then(getShortUrl);
+         //Gets video id to generate url
+         getYoutubeVideo(tempArr[i]).then(getShortUrl);
 
-        
 
-        }
-        genreDiv.append(ul);
+
     }
+    genreDiv.append(ul);
+  }
 }
+
+
+
+
+$(".watch").click(()=>{
+ 
+  createFullScreen()
+  
+})
+
+
+function createFullScreen()
+{ 
+  
+  const fullScreenDiv = $(".fullscreen");
+  fullScreenDiv.css("width","100%");
+  displayYoutubeVideoFull();
+
+}
+$(".closebtn").click(()=>{
+  
+  const fullScreenDiv = $(".fullscreen")  
+  fullScreenDiv.css("width","0%") 
+  var video=$("#popup") 
+  video.remove();
+
+})
+$(".backBtn").click(()=>
+{
+  const title = $(".genre-title")
+  title.text("What genre would you like?")
+  const genreDiv = $(".genres");
+  genreDiv.empty();
+  $(".backBtn").css("visibility","hidden")
+  getCategoryList().then(createCategoryButtons); 
+})
+
+
+
 
 /** Generates url of full video with autoplay off  and creates iframe for list*/
 function getShortUrl(movieData) {
@@ -224,19 +313,12 @@ function displayYoutubeVideoFull() {
     var urlFullScreen = `https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&modestbranding=1&showinfo=0&autoplay=1&mute=1`
 
     //Add iframe to popup screen
-
     var layer = $(".fullscreen")  
-
     layer.append(`
     <iframe id="popup" class='trailer'  width="1920" height="1080" 
     src="${layer}" frameborder="1">
     </iframe>
     `);
-
-    // <iframe class="videoContainer__video" width="1920" height="1080" 
-    // src= 'https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1'
-    // frameborder="0"></iframe>
-
 };
 
 /** Render favourites using localStorage */
@@ -332,160 +414,60 @@ function displayYoutubeVideo(movieData) {
 
 /** Gets movie information from youTube API using movieName */
 function getYoutubeVideo(movieName) {
-   
-     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-        .then(function (data) {
-          
-            //Gets movie id from searched tv show or movie
-            movieId=data.items[0].id.videoId;
 
-          // Stores the video that is on screen to use as full mode
-          
-           //HARDCODE VARS for TESTING
-           //  var movieId = 'tqVVrTvrI8U';
-            // movieName= "The Glory";
-             storeOnScreenID(movieId,movieName);
-            
-            //If the tv show / movie was found calls function to show video on on page
-            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
-           
-        });
+  //Calls youTube API
+  return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+      .then(function (data) {
 
-    // displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
-        
+          //Gets movieId from searched tv show or movie
+          movieId = data.items[0].id.videoId;
 
-}
+          //Stores the video that is on screen to save future searchs
+          storeOnScreenID(movieId, movieName);
 
-
-
-/** Calls getYoutubeVideo for each video on the Array */
-function showTopTVShow(tempArr){
-    
-    //If the param is not empty or undefined
-    if (tempArr) {
-    var TVShowNames = tempArr;    
-    //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
-    var video= Math.floor(Math.random()* (TVShowNames.length-1));  
-    //Passing only 1 element for testing
-    getYoutubeVideo(TVShowNames[video]);
-
-    }
-    /**DO NOT DELETE FOR NOW IN CASE WE SHOW MORE THAN 1 VIDEO*/
-    // for (var i = 0; i < TVShowNames.length; i++){
-    //     getYoutubeVideo(TVShowNames[i]);   
-    // }
-
-  
-}
-
-
-
-/** Create category buttons dynamically using jQuery */
-function createCategoryButtons(categoryListArr) {
-  const totalButtonReq = categoryListArr.length;
-  const genreDiv = $(".genres");
-  let tempButton;
-  for (var i = 0; i < totalButtonReq; i++) {
-    tempButton = $("<button>");
-    tempButton.addClass("buttonstyle");
-    tempButton.text(categoryListArr[i]);
-    genreDiv.append(tempButton);
-  }
-}
-/**Category button click handles here */
-$(".genres").on("click", "button", function () {
-  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
-});
-
-
-/**Get show list based n category selected */
-function getShowListforSelectedCategory(categoryName) {
-  var categoryURL = `${baseURL}discover/${MediaType}?api_key=${TMDB_APIKey}&sort_by=popularity.desc&page=1&with_watch_monetization_types=flatrate&with_status=0&with_type=0&with_genres=${categoryName}`;
-  let tempArr = [];
-  const heading = $(".genre-title");
-  heading.text(categoryName);
-  heading.css('font-weight',700)
-
-  return $.get(categoryURL).then(
-    function (data) {
-      let categoryList = data.results;
-      for (var i = 0; i < categoryList.length; i++) {
-        tempArr.push(categoryList[i]["name"]);
+          return [movieId,movieName];
       }
-      return tempArr;
-    },
-    function (data) {
-      console.log(data.responseJSON["status_message"]);
-    }
-  );
+          ,
+          function (data) {
+              console.log(data.responseJSON["status_message"]);
+          }
+      );
+
 }
 
-function genreListCreation(tempArr) {
-  const genreDiv = $(".genres");
-  const len = tempArr.length;
-  var ul = $("<ul>");
-  genreDiv.empty();
-  const button = $(".backBtn")
- 
-  button.css("visibility","visible")
-  
-  if (len) {
-    for (var i = 0; i < len; i++) {
-      var li = $("<li>");
-      var tempDiv = $("<div>");
-      li.append(`<p>${tempArr[i]}</p>`);
-      li.addClass("genreList");
-      tempDiv.addClass("selectedGenreShowPreviewDiv");
 
-      li.append(tempDiv);
-      ul.append(li);
-    }
-    genreDiv.append(ul);
+
+/** Show video on main screen base on a random search */
+function showTopTVShow(TVShowNames) {
+
+  //If the array of movies is not empty or undefined
+  if (TVShowNames) {
+
+      //Pick a random number from 0 to TVShowNames.length-1
+      var video = Math.floor(Math.random() * (TVShowNames.length - 1));
+
+      //Call the function using the random number
+      getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
+
   }
+
 }
 
-/** Inits script calling  rendering favourites and calling showTopTVShow() function */
-function init() {
-  //Show video recommendation
 
+
+/** Inits function */
+function init() {
+
+  //Show video recommendation  
   TopTVShowPickoftheDay().then(showTopTVShow);
 
+  //Gets and show category list
   getCategoryList().then(createCategoryButtons);
 
-  //Search and render favourites suing local storage
+  //Search and render favourites using local storage
   renderFavourites();
+
 }
 
 init();
 
-$(".watch").click(()=>{
- 
-  createFullScreen()
-  
-})
-
-function createFullScreen()
-{ 
-  
-  const fullScreenDiv = $(".fullscreen");
-  fullScreenDiv.css("width","100%");
-  displayYoutubeVideoFull();
-
-}
-$(".closebtn").click(()=>{
-  
-  const fullScreenDiv = $(".fullscreen")  
-  fullScreenDiv.css("width","0%") 
-  var video=$("#popup") 
-  video.remove();
-
-})
-$(".backBtn").click(()=>
-{
-  const title = $(".genre-title")
-  title.text("What genre would you like?")
-  const genreDiv = $(".genres");
-  genreDiv.empty();
-  $(".backBtn").css("visibility","hidden")
-  getCategoryList().then(createCategoryButtons); 
-})
