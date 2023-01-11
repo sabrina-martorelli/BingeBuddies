@@ -143,7 +143,7 @@ function getShortUrl(movieData) {
 
     //Removes spaces on names
     var classID= movieData[1].trim();
-    
+
     //Adds _ between words on movie names
     classID=classID.replace(/ /g,"_");
     
@@ -153,7 +153,6 @@ function getShortUrl(movieData) {
     //Creates url base on movieId
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0`;
   
-    console.log(url);
     //Appends iframe to div
     tempDiv.append(`
     <iframe id="iframe-category" class='trailer'  width="350" height="200" 
@@ -320,7 +319,6 @@ function displayYoutubeVideo(movieData) {
 /** Gets movie information from youTube API using movieName */
 function getYoutubeVideo(movieName) {
 
-    console.log|(`get yout tube video https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`);
     //Calls youTube API
     return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
