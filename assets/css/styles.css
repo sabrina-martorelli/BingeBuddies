@@ -141,10 +141,13 @@ text-align: center;
 
 }
 
+
 /* LOVE HEART ICON */
 .love {
-margin: -45px 0px 100px 850px;
 position: absolute;
+right: 450px;
+top: 570px;
+z-index: 1;/* used z-index because error message when API credit ran out covered the button */
 }
 
 /* WATCH TRAILER BUTTON */
@@ -152,7 +155,8 @@ position: absolute;
 padding: 5px;
 border-radius: 15px;
 position: absolute;
-margin: -45px 0px 0px 725px;
+right: 500px;
+top: 570px;
 }
 
 /* THIS IS CUSTOM STYLING FOR THE WATCH TRAILER BUTTON ONLY */
