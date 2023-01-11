@@ -199,7 +199,7 @@ function addFavourite()
     var onScreenID = getOnScreenID();
 
     //Creates URL for full play
-    var urlFullScreen=`https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`  
+    var urlFullScreen=`https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&autoplay=1&mute=1`  
     
 
     //Add iframe to screen
