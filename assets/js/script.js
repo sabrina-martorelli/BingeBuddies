@@ -403,9 +403,8 @@ function storeFavourites(movieID, movieName) {
 function displayYoutubeVideo(movieData) {
 
     
-
     //Creates url base on movieData : id and name
-    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&start=0&end=15&autoplay=1&mute=0`;
+    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0&autoplay=1&mute=1&start=0&end=15`;
 
     //Gets div to show video
     var hero = $('.hero');
