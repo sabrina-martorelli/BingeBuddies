@@ -40,9 +40,8 @@ function TopTVShowPickoftheDay() {
      
       const error = $(".alert");
       error.css("display", "block")
-      error.text(data.responseJSON["status_message"]);
-      
-      console.log(`in toptvshow ${data.responseJSON["status_message"]}`);
+      error.text(data.responseJSON["status_message"]); 
+      console.log(data.responseJSON["status_message"]);
     }
   );
 }
@@ -170,7 +169,7 @@ function genreListCreation(tempArr) {
    
        // Create class based on movie name
       tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
-            console.log(`selectedGenreShowPreviewDiv${classID}`)
+           
       
 
         li.append(tempDiv);
@@ -238,11 +237,10 @@ function getShortUrl(movieData) {
     //Gets div to insert iframe
     var tempDiv = $(`.selectedGenreShowPreviewDiv${classID}`);
     
-    console.log(tempDiv);
 
     //Creates url base on movieId
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0`;
-    console.log( url);
+   
 
     //Appends iframe to div
     tempDiv.append(`
@@ -274,7 +272,7 @@ function getOnScreenID() {
 /**Cleans Favourites list */
 function removeFavourite() {
 
-    console.log('entra');
+   
     //Save on ScreenID data
     var saveOnScreen = getOnScreenID();
 
