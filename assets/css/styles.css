@@ -64,14 +64,14 @@ a {
 display: flex;
 }
 
-.dropdown {
+.dropdown{
 padding: 10px;
 border-radius: 30px;
 font-size: 14px;
 color: #fff; 
 background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
 background-size: 300%;  
-z-index: 1;
+z-index: -1;
 font-weight: 700;
 }
 

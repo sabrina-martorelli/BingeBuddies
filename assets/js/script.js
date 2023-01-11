@@ -5,9 +5,9 @@ var MediaType = "tv";
 /********************************YOUTUBE API******************************************** */
 //var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-//var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
+var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
-var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
+//var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
 
 /******************************************************************************************* */
 
@@ -121,12 +121,16 @@ function createCategoryButtons(categoryListArr) {
   }
   
   
+  /** Generates url of full video with autoplay off  and creates iframe for list*/
   function getShortUrl(movieId){
-
-    //Generates url of full video with autoplay off
-
+    
+    //Gets div to insert iframe
     var tempDiv = $(".selectedGenreShowPreviewDiv"); 
+    
+    //Creates url base on movieId
     var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1`;  
+    
+    //Appends iframe to div
     tempDiv.append(`
     <iframe id="iframe-category" class='trailer'  width="350" height="200" 
     src="${url}" frameborder="0">
@@ -135,17 +139,6 @@ function createCategoryButtons(categoryListArr) {
 
   }
 
-//Example of YouTube url using id from The MovieDB API 
-//https://www.youtube.com/watch?v=uMIsXdoj2vU
-
-//Example of embed functionality and start end params
-//https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10
-
-//Example of url with embed functionality
-//src="https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1"
-
-//NOT TESTED -Example of embed functionality and start end params and autoplay -NOT TESTED
-//https://www.youtube.com/embed/smTK_AeAPHs?enablejsapi=1&?start=0&end=10&autoplay=1;
 
 //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
 
@@ -155,12 +148,13 @@ function createCategoryButtons(categoryListArr) {
 
 var  watchTrailerButton =$('.watch');
 var loveButton=$('.love');
-var clearFavouritesButton =$('.clear-list');
+var clearFavouritesButton =$('#clear-list');
 var newFavourite = [];
 
     
- //Adds event listener for trailer button
+//Adds event listener for trailer button
 watchTrailerButton.click(displayYoutubeVideoFull);
+
 //Adds event listener for love button
 loveButton.click(addFavourite);
 
@@ -180,91 +174,100 @@ function storeOnScreenID(movieID, movieName){
 }
 
 
-//Gets onScreenID data from local storage
+/**Gets onScreenID data from local storage */
 function getOnScreenID(){
-
    return JSON.parse(localStorage.getItem("onScreen")); 
 }
  
-
+/**Cleans Favourites list */
 function removeFavourite(){
+
     //Save on ScreenID data
     var saveOnScreen = getOnScreenID(); 
+
     //Cleans complete local storage
     localStorage.clear();
+
     //Creates local storage again for ScreenID
     storeOnScreenID(saveOnScreen.id,saveOnScreen.name);
 
+    //Renders favourites menu using localStorage
     renderFavourites();
 
 }
 
 
+/**Adds a new favourite to the list and display on menu */
 function addFavourite()
 {
-
+    //Gets id of current video from local storage
     var moviedata = getOnScreenID();
+    
     //Store new favourite on localStorage
     storeFavourites(moviedata.id, moviedata.name);
-    //Renders favourite using localStorage
+    
+    //Renders favourites menu using localStorage
     renderFavourites();
-    //Change Love button to full when clicked
+   
+    //Change Love button to full version
     loveButton.addClass('fas fa-heart love fa-2x grow')
   
 }
 
 
 
-// /** Display youtube video on page */
+/** Display youtube video on page */
  function displayYoutubeVideoFull () {
 
-    //Gets movie id from local storage
+     //Gets id of current video from local storage
     var onScreenID = getOnScreenID();
 
-    //Creates URL for full play
+    //Creates URL for full play 
     var urlFullScreen=`https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&autoplay=1&mute=1`  
     
-
-    //Add iframe to screen
+    //Add iframe to popup screen
     console.log(urlFullScreen);
     // <iframe class="videoContainer__video" width="1920" height="1080" 
     // src= 'https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1'
     // frameborder="0"></iframe>
 
-   
-
 };
 
 
-//Render favourites using localStorage
+/** Render favourites using localStorage */
 function renderFavourites() {
 
-    //Get favourites from localStorage
+    //Get existing favourites data from localStorage
     var existingFavourites = JSON.parse(localStorage.getItem("favourites"));
 
     //Gets Menu section
     favouritesMenu= $('#dropdownMenuButton');
-    //Cleans html to show buttons
+   
+    //Cleans html on menu to show buttons
     favouritesMenu.html('');
 
-    //If there is any search stored on localStorage creates a button for each of them
+    //If there is any data creates a button for each movie
     if (existingFavourites) {
         for (var i = 0; i < existingFavourites.length; i++) {
+            
+            //Gets data of movie 
             var favourite= existingFavourites[i];
            
-            //Uses the name of the city as id for future searches
+            //Adds new button to Menu
             favouritesMenu.append(`<button class='buttonstyle' id='${favourite.id}'>${favourite.name}</button>`);
            
-             //Adds listener for new history button
+            //Adds listener for new button
             var newButton = $(`#${favourite.id}`);   
-       
             newButton.on('click', function () { 
             displayYoutubeVideo(this.id);
             });
         }
+       
+        //Adds clear favourites as last button on the list
+        favouritesMenu.append(`<button class="buttonstyle" id="clear-list">Clear Favourites</button>`);
+            
     }
    
-
 }
 
 
@@ -272,6 +275,7 @@ function renderFavourites() {
 /** Store favourites into localStorage */
 function storeFavourites(movieID, movieName) { 
 
+    //Use of object to store movie id and movie name
     var newF ={
         id:movieID,
         name:movieName,
@@ -282,10 +286,12 @@ function storeFavourites(movieID, movieName) {
     if (existingSearch !== null) {
         newFavourite = existingSearch;
     }
+
     //Only stores favourites that are not on the local storage already
     if (!newFavourite.includes(newF)) {
         newFavourite.push(newF);
     }
+    
     localStorage.setItem("favourites", JSON.stringify(newFavourite)); 
 }
 
@@ -294,13 +300,16 @@ function storeFavourites(movieID, movieName) {
 /** Display youtube video on page */
 function displayYoutubeVideo (movieId){
     
-    
+    //Crets url base on movieId
     var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
     
+    //Gets div to show video
     var hero = $('.hero');
   
+    //Cleans html of div
     hero.html('');
 
+    //Adds iframe to div
     hero.prepend(`
     <iframe id="existing-iframe-example" class='trailer'  width="800" height="450" 
     src="${url}" frameborder="0">
@@ -310,14 +319,17 @@ function displayYoutubeVideo (movieId){
 };
 
 
-
+/** Gets movie information from youTube API using movieName */
 function getYoutubeVideo(movieName) {
   
+    //Calls youTube API
     return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
-            //Gets movie id from searched tv show or movie
+           
+            //Gets movieId from searched tv show or movie
             movieId=data.items[0].id.videoId;
-           // Stores the video that is on screen to use as full mode
+
+            //Stores the video that is on screen to save future searchs
             storeOnScreenID(movieId,movieName);
           
              return movieId;
@@ -328,7 +340,7 @@ function getYoutubeVideo(movieName) {
      }
     );
  
-   
+    //DO NOT DELETE
     // var movieId ='smTK_AeAPHs?';
     // return movieId;
 
@@ -336,38 +348,34 @@ function getYoutubeVideo(movieName) {
 
 
 
-/** Calls getYoutubeVideo for each video on the Array */
-function showTopTVShow(tempArr){
+/** Show video on main screen base on a random search */
+function showTopTVShow(TVShowNames){
     
-    //If the param is not empty or undefined
-    if (tempArr) {
-    var TVShowNames = tempArr;    
-    //Pick a random number from 0 to TVShowNames.length-1 and use to call next function
+    //If the array of movies is not empty or undefined
+    if (TVShowNames) {
+
+    //Pick a random number from 0 to TVShowNames.length-1
     var video= Math.floor(Math.random()* (TVShowNames.length-1));  
-    //Gets url for video
-    //var movieId = getYoutubeVideo(TVShowNames[video]);
 
-    getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
-
+    //Call the function using the random number
+    //getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
    
     }
-
-
   
 }
 
 
 
-/** Inits script calling  rendering favourites and calling showTopTVShow() function */
+/** Inits function */
 function init(){   
 
-     //Show video recommendation  
-
+    //Show video recommendation  
     TopTVShowPickoftheDay().then(showTopTVShow);
-    
+
+    //Gets and show category list
     getCategoryList().then(createCategoryButtons);
 
-    //Search and render favourites suing local storage
+    //Search and render favourites using local storage
     renderFavourites();
 
 }
