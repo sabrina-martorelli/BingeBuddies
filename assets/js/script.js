@@ -226,7 +226,6 @@ function displayYoutubeVideoFull() {
     //Add iframe to popup screen
 
     var layer = $(".fullscreen")  
-    console.log('good url',layer);
 
     layer.append(`
     <iframe id="popup" class='trailer'  width="1920" height="1080" 
@@ -234,9 +233,6 @@ function displayYoutubeVideoFull() {
     </iframe>
     `);
 
-    //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
-    // src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
-   
     // <iframe class="videoContainer__video" width="1920" height="1080" 
     // src= 'https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1'
     // frameborder="0"></iframe>
@@ -463,14 +459,14 @@ function init() {
 init();
 
 $(".watch").click(()=>{
-  console.log("clicked")
+ 
   createFullScreen()
   
 })
 
 function createFullScreen()
 { 
-  console.log('enter');
+  
   const fullScreenDiv = $(".fullscreen");
   fullScreenDiv.css("width","100%");
   displayYoutubeVideoFull();
@@ -480,7 +476,6 @@ $(".closebtn").click(()=>{
   
   const fullScreenDiv = $(".fullscreen")  
   fullScreenDiv.css("width","0%") 
-
   var video=$("#popup") 
   video.remove();
 
