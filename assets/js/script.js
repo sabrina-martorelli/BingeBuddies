@@ -3,9 +3,9 @@ var baseURL = "https://api.themoviedb.org/3/";
 var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
-//var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
+//var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
 /******************************************************************************************* */
 
@@ -170,7 +170,8 @@ function addFavourite()
     renderFavourites();
 
     //Change Love button to full when clicked
-   // console.log(loveButton);
+    loveButton.addClass('fas fa-heart love fa-2x grow')
+  
 }
 
 
@@ -267,22 +268,22 @@ function displayYoutubeVideo (url){
 
 function getYoutubeVideo(movieName) {
    
-    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-    //     .then(function (data) {
+     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+        .then(function (data) {
           
-    //         //Gets movie id from searched tv show or movie
-    //         movieId=data.items[0].id.videoId;
-    //     
-    //        // Stores the video that is on screen to use as full mode
+            //Gets movie id from searched tv show or movie
+            movieId=data.items[0].id.videoId;
+        
+           // Stores the video that is on screen to use as full mode
           
-    //         storeOnScreenID(movieId,movieName);
+            storeOnScreenID(movieId,movieName);
             
-    //         //If the tv show / movie was found calls function to show video on on page
-    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+            //If the tv show / movie was found calls function to show video on on page
+            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-    //     });
-    console.log('favourites');
-     displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+        });
+   
+   //  displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
