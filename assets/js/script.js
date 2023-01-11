@@ -9,17 +9,6 @@ var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
 /******************************************************************************************* */
 
-var  watchTrailerButton =$('.watch');
-var loveButton=$('.love');
-var newFavourite = [];
-
-    
- //Adds event listener for trailer button
-//watchTrailerButton.click(displayYoutubeVideoFull);
-//Adds event listener for love button
-loveButton.click(addFavourite);
-
-
 
 /*Get the daily trending items name array*/
 function TopTVShowPickoftheDay() {
@@ -140,6 +129,21 @@ function createCategoryButtons(categoryListArr) {
 
 
 
+var  watchTrailerButton =$('.watch');
+var loveButton=$('.love');
+var clearFavouritesButton =$('.clear-list');
+var newFavourite = [];
+
+    
+ //Adds event listener for trailer button
+//watchTrailerButton.click(displayYoutubeVideoFull);
+//Adds event listener for love button
+loveButton.click(addFavourite);
+
+//Adds event listener for love button
+clearFavouritesButton.click(removeFavourite);
+
+
 
 //Sets onScreenID to local storage
 function storeOnScreenID(movieID, movieName){
@@ -159,16 +163,25 @@ function getOnScreenID(){
 }
  
 
+function removeFavourite(){
+    //Save on ScreenID data
+    var saveOnScreen = getOnScreenID(); 
+    //Cleans complete local storage
+    localStorage.clear();
+    //Creates local storage again for ScreenID
+    storeOnScreenID(saveOnScreen.id,saveOnScreen.name);
+
+}
+
+
 function addFavourite()
 {
 
     var moviedata = getOnScreenID();
-   
     //Store new favourite on localStorage
     storeFavourites(moviedata.id, moviedata.name);
     //Renders favourite using localStorage
     renderFavourites();
-
     //Change Love button to full when clicked
     loveButton.addClass('fas fa-heart love fa-2x grow')
   
@@ -216,7 +229,7 @@ function renderFavourites() {
        
             newButton.on('click', function () { 
             var url = `https://www.youtube.com/embed/${this.id}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`
-
+            
             displayYoutubeVideo(url);
             });
         }
@@ -268,22 +281,22 @@ function displayYoutubeVideo (url){
 
 function getYoutubeVideo(movieName) {
    
-     $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
-        .then(function (data) {
+    //  $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
+    //     .then(function (data) {
           
-            //Gets movie id from searched tv show or movie
-            movieId=data.items[0].id.videoId;
+    //         //Gets movie id from searched tv show or movie
+    //         movieId=data.items[0].id.videoId;
         
-           // Stores the video that is on screen to use as full mode
+    //        // Stores the video that is on screen to use as full mode
           
-            storeOnScreenID(movieId,movieName);
+    //         storeOnScreenID(movieId,movieName);
             
-            //If the tv show / movie was found calls function to show video on on page
-            displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
+    //         //If the tv show / movie was found calls function to show video on on page
+    //         displayYoutubeVideo(`https://www.youtube.com/embed/${movieId}?enablejsapi=1&?start=0&end=15&autoplay=1&mute=1`);  
            
-        });
+    //     });
    
-   //  displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
+    displayYoutubeVideo(`https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1`);  
         
 
 }
