@@ -309,7 +309,7 @@ transform: scale(1.1);
 }
 .fullscreen
 {
-  opacity: 0.5;
+
   width:0;
   height:100%;
   position:fixed;

@@ -9,7 +9,9 @@ var MediaType = "tv";
 
 //var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
 
- var youtubeKey = "AIzaSyCm6HEMuVqhQCJ9cgt2NxCE6UBeMeVJivE";
+ //var youtubeKey = "AIzaSyCm6HEMuVqhQCJ9cgt2NxCE6UBeMeVJivE";
+
+ var youtubeKey = "AIzaSyDoUpq4Y32DjmSt6qgJyNf5QGeMQxJFy1s";
 
 /******************************************************************************************* */
 
@@ -175,8 +177,8 @@ function genreListCreation(tempArr) {
             console.log(`selectedGenreShowPreviewDiv${classID}`)
       
 
-      li.append(tempDiv);
-      ul.append(li);
+        li.append(tempDiv);
+        ul.append(li);
 
          //Gets video id to generate url
          getYoutubeVideo(tempArr[i]).then(getShortUrl);
@@ -230,6 +232,7 @@ $(".backBtn").click(()=>
 /** Generates url of full video with autoplay off  and creates iframe for list*/
 function getShortUrl(movieData) {
 
+  
     //Removes spaces on names
     var classID= movieData[1].trim();
 
@@ -316,7 +319,7 @@ function displayYoutubeVideoFull() {
     var layer = $(".fullscreen")  
     layer.append(`
     <iframe id="popup" class='trailer'  width="1920" height="1080" 
-    src="${layer}" frameborder="1">
+    src="${urlFullScreen}" frameborder="1">
     </iframe>
     `);
 };
@@ -394,9 +397,8 @@ function storeFavourites(movieID, movieName) {
 function displayYoutubeVideo(movieData) {
 
     //Creates url base on movieData : id and name
-    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0&start=0&end=15&disablekb=1&autoplay=1&mute=0`;
+    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&start=0&end=15&autoplay=1&mute=0`;
 
-    
     //Gets div to show video
     var hero = $('.hero');
 
