@@ -16,8 +16,6 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-
-
   <body>
 
     <div class="fullscreen">
@@ -26,6 +24,7 @@
       <!-- LOGO AND DROPDOWN BUTTON -->
   <header class="parent">
     <h1 class="logo child">BingeBuddies</h1>
+    <div class="hide about"> <strong>BingeBuddies</strong> is your night-in couch companion to <strong>help you decide </strong> what to watch. Find out <strong>about the most popular shows/movies </strong> are right now <strong>or  pick a genre </strong> and find out more. </div>
 
 
     <div class="dropdown">
@@ -39,21 +38,24 @@
       Favourites
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
+        <!-- <a class="dropdown-item" href="#">Action</a>
         <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" href="#">Something else here</a> -->
       </div>
     </div>
   </header>
+ 
+
+
     <!-- BIG HERO SPACE -->
     <div class="hero">
       <!-- TRAILER WHITE SPACE FOR TOP PICK OF DAY -->
-      <div class="trailer">
-        <!-- HEART ICON -->
-        <i class="fa-regular fa-heart love fa-2x grow"></i>
-        <div class="buttons">
-          <button class="watch fancy">Watch Trailer?</button>
-        </div>
+    </div>
+    <!-- HEART ICON -->
+   <i class="fa-regular fa-heart love fa-2x grow"></i>
+   <div class="buttons">
+     <button class="watch fancy">Watch Trailer?</button>
+   </div>
       </div>
     </div>
 
@@ -63,6 +65,10 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> A problem has been occurred while submitting your data.
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
     <div class="next-section">
       <section class="genre-section">
         <h4 class="genre-title">What genre would you like?</h4>
@@ -70,16 +76,14 @@
       <div class="genres"></div> 
       <button class="backBtn">Back</button>    
     </div>
-      
     <footer class=""bg-light>
       <div class="footer-icons">
         <i class="fa-brands fa-github fa-3x grow"></i>
         <i class="fa-brands fa-twitter fa-3x grow"></i>
         <i class="fa-brands fa-facebook fa-3x grow"></i>
-      </div>      
+      </div>
       <h5><i class="fa-solid fa-copyright"></i> BingeBuddies 2023</h5>
     </footer>
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -93,7 +97,7 @@
       integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
       crossorigin="anonymous"
     ></script>
-    <!-- Local js file -->  
+    <!-- Local js file -->
     <script src="assets/js/script.js"></script>
   </body>
 </html>
