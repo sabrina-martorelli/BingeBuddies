@@ -78,12 +78,12 @@ function createCategoryButtons(categoryListArr) {
         genreDiv.append(tempButton);
     }
 }
+
 /**Category button click handles here */
 $(".genres").on("click", "button", function () {
-    getShowListforSelectedCategory($(this).text()).then(genreListCreation);
-
-  
+  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
 });
+
 
 /**Get show list based n category selected */
 function getShowListforSelectedCategory(categoryName) {
@@ -120,10 +120,6 @@ function createCategoryButtons(categoryListArr) {
     genreDiv.append(tempButton);
   }
 }
-/**Category button click handles here */
-$(".genres").on("click", "button", function () {
-  getShowListforSelectedCategory($(this).text()).then(genreListCreation);
-});
 
 
 /**Get show list based n category selected */
@@ -169,11 +165,11 @@ function genreListCreation(tempArr) {
       //Removes spaces on names
       var classID=tempArr[i].trim();
             
-            //Adds _ between words on movie names
-            classID=classID.replace(/ /g,"_");
-            console.log(classID);
-            // Create class based on movie name
-            tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
+      //Adds _ between words on movie names
+      classID=classID.replace(/ /g,"_");
+   
+       // Create class based on movie name
+      tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
             console.log(`selectedGenreShowPreviewDiv${classID}`)
       
 
@@ -241,13 +237,16 @@ function getShortUrl(movieData) {
     
     //Gets div to insert iframe
     var tempDiv = $(`.selectedGenreShowPreviewDiv${classID}`);
-   
+    
+    console.log(tempDiv);
+
     //Creates url base on movieId
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0`;
-  
+    console.log( url);
+
     //Appends iframe to div
     tempDiv.append(`
-    <iframe id="iframe-category" class='trailer'  width="350" height="200" 
+    <iframe id="iframe-category" class='trailer'  width="400" height="250" 
     src="${url}" frameborder="0">
     </iframe>
     `)
@@ -258,7 +257,7 @@ function getShortUrl(movieData) {
 
 /** Sets onScreenID data on local storage */
 function storeOnScreenID(movieID, movieName) {
- console.log('entra');
+ 
     onScreenData = {
         id: movieID,
         name: movieName,
