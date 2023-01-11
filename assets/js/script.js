@@ -3,9 +3,9 @@ var baseURL = "https://api.themoviedb.org/3/";
 var MediaType = "tv";
 
 /********************************YOUTUBE API******************************************** */
-//var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
+var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
+//var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
 //var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
 
@@ -79,6 +79,8 @@ function createCategoryButtons(categoryListArr) {
 /**Category button click handles here */
 $(".genres").on("click", "button", function () {
     getShowListforSelectedCategory($(this).text()).then(genreListCreation);
+
+  
 });
 
 /**Get show list based n category selected */
@@ -106,7 +108,7 @@ function getShowListforSelectedCategory(categoryName) {
 function genreListCreation(tempArr) {
     const genreDiv = $(".genres");
     //const len = tempArr.length;
-    const len = 1;
+    const len = 5;
     var ul = $("<ul>");
     genreDiv.empty();
     if (len) {
@@ -115,9 +117,11 @@ function genreListCreation(tempArr) {
             var tempDiv = $("<div>");
             li.append(`<p>${tempArr[i]}</p>`)
             li.addClass("genreList")
-            tempDiv.addClass("selectedGenreShowPreviewDiv");
-
-
+           
+            var classID=tempArr[i].trim();
+            classID=classID.replace(/ /g,"_");
+            console.log(`selectedGenreShowPreviewDiv${classID}`);
+            tempDiv.addClass(`selectedGenreShowPreviewDiv${classID}`);
 
             li.append(tempDiv);
             ul.append(li);
@@ -125,7 +129,7 @@ function genreListCreation(tempArr) {
             //Gets video id 
             getYoutubeVideo(tempArr[i]).then(getShortUrl);
 
-
+        
 
         }
         genreDiv.append(ul);
@@ -133,21 +137,26 @@ function genreListCreation(tempArr) {
 }
 
 /** Generates url of full video with autoplay off  and creates iframe for list*/
-function getShortUrl(movieId) {
+function getShortUrl(movieData) {
 
+    
+    var classID= movieData[1].trim();
+    classID=classID.replace(/ /g,"_");
     //Gets div to insert iframe
-    var tempDiv = $(".selectedGenreShowPreviewDiv");
-
+    var tempDiv = $(`.selectedGenreShowPreviewDiv${classID}`);
+    console.log(`selectedGenreShowPreviewDiv${classID}`);
+   
     //Creates url base on movieId
-    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1`;
-
+    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0`;
+  
+    console.log(url);
     //Appends iframe to div
     tempDiv.append(`
     <iframe id="iframe-category" class='trailer'  width="350" height="200" 
     src="${url}" frameborder="0">
     </iframe>
     `)
-
+    
 }
 
 
@@ -246,8 +255,10 @@ function renderFavourites() {
 
             //Adds listener for new button
             var newButton = $(`#${favourite.id}`);
+
             newButton.on('click', function () {
-                displayYoutubeVideo(this.id);
+                //Send id as array
+                displayYoutubeVideo([this.id])
             });
         }
 
@@ -282,10 +293,10 @@ function storeFavourites(movieID, movieName) {
 }
 
 /** Display youtube video on page */
-function displayYoutubeVideo(movieId) {
+function displayYoutubeVideo(movieData) {
 
-    //Crets url base on movieId
-    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&modestbranding=1&showinfo=0&start=0&end=15&disablekb=1&autoplay=1&mute=0`;
+    //Crets url base on movieData : id and name
+    var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0&start=0&end=15&disablekb=1&autoplay=1&mute=0`;
 
     //Gets div to show video
     var hero = $('.hero');
@@ -295,7 +306,7 @@ function displayYoutubeVideo(movieId) {
 
     //Adds iframe to div
     hero.prepend(`
-    <iframe id="existing-iframe-example" class='trailer'  width="800" height="450" 
+    <iframe id="iframe-example" class='trailer'  width="800" height="450" 
     src="${url}" frameborder="0">
     </iframe>
     `)
@@ -305,6 +316,7 @@ function displayYoutubeVideo(movieId) {
 /** Gets movie information from youTube API using movieName */
 function getYoutubeVideo(movieName) {
 
+    console.log|(`get yout tube video https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`);
     //Calls youTube API
     return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
@@ -315,7 +327,7 @@ function getYoutubeVideo(movieName) {
             //Stores the video that is on screen to save future searchs
             storeOnScreenID(movieId, movieName);
 
-            return movieId;
+            return [movieId,movieName];
         }
             ,
             function (data) {
