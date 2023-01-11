@@ -151,9 +151,6 @@ function getShortUrl(movieId) {
 }
 
 
-//NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
-
-// src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
 
 /** Sets onScreenID data on local storage */
 function storeOnScreenID(movieID, movieName) {
@@ -211,10 +208,14 @@ function displayYoutubeVideoFull() {
     var onScreenID = getOnScreenID();
 
     //Creates URL for full play 
-    var urlFullScreen = `https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&autoplay=1&mute=1`
+    var urlFullScreen = `https://www.youtube.com/embed/${onScreenID.id}?enablejsapi=1&modestbranding=1&showinfo=0&autoplay=1&mute=1`
 
     //Add iframe to popup screen
     console.log(urlFullScreen);
+
+    //NOT TESTED- TRY watch_popup instead of watch -NOT TESTED
+    // src="http://www.youtube.com/embed/IsBInsOj8TY?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1&playlist=IsBInsOj8TY" 
+   
     // <iframe class="videoContainer__video" width="1920" height="1080" 
     // src= 'https://www.youtube.com/embed/smTK_AeAPHs??enablejsapi=1&start=0&end=15&autoplay=1&mute=1'
     // frameborder="0"></iframe>
@@ -284,7 +285,7 @@ function storeFavourites(movieID, movieName) {
 function displayYoutubeVideo(movieId) {
 
     //Crets url base on movieId
-    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;
+    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&modestbranding=1&showinfo=0&start=0&end=15&disablekb=1&autoplay=1&mute=0`;
 
     //Gets div to show video
     var hero = $('.hero');
@@ -322,10 +323,6 @@ function getYoutubeVideo(movieName) {
             }
         );
 
-    //DO NOT DELETE
-    // var movieId ='smTK_AeAPHs?';
-    // return movieId;
-
 }
 
 /** Show video on main screen base on a random search */
@@ -338,7 +335,7 @@ function showTopTVShow(TVShowNames) {
         var video = Math.floor(Math.random() * (TVShowNames.length - 1));
 
         //Call the function using the random number
-        //getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
+        getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
 
     }
 
@@ -357,6 +354,5 @@ function init() {
     renderFavourites();
 
 }
-
 
 init();
