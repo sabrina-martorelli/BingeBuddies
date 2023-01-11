@@ -260,9 +260,9 @@ function renderFavourites() {
             favouritesMenu.append(`<a class='dropdown-item' id='${favourite.id}'>${favourite.name}</a>`);
 
             //Adds listener for new button
-            var newButton = $(`#${favourite.id}`);
+            var newlink = $(`#${favourite.id}`);
 
-            newButton.on('click', function () {
+            newlink.on('click', function () {
                 //Send id as array
                 displayYoutubeVideo([this.id])
             });
@@ -309,9 +309,10 @@ function storeFavourites(movieID, movieName) {
 /** Display youtube video on page */
 function displayYoutubeVideo(movieData) {
 
-    //Crets url base on movieData : id and name
+    //Creates url base on movieData : id and name
     var url = `https://www.youtube.com/embed/${movieData[0]}?enablejsapi=1&modestbranding=1&showinfo=0&start=0&end=15&disablekb=1&autoplay=1&mute=0`;
 
+    
     //Gets div to show video
     var hero = $('.hero');
 
@@ -370,7 +371,7 @@ function showTopTVShow(TVShowNames) {
 function init() {
 
     //Show video recommendation  
-    //TopTVShowPickoftheDay().then(showTopTVShow);
+    TopTVShowPickoftheDay().then(showTopTVShow);
 
     //Gets and show category list
     getCategoryList().then(createCategoryButtons);
