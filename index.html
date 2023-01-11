@@ -15,20 +15,30 @@
 
 
   <body>
+
     <div class="fullscreen">
-      <div class="screen"></div>
+      <a href="#" class="closebtn">&times;</a>
     </div>
-  
-    <!-- LOGO AND DROPDOWN BUTTON -->
-    <header class="parent">
-      <h1 class="logo child">BingeBuddies</h1>
-      <div class="hide about"> <strong>BingeBuddies</strong> is your night-in couch companion to <strong>help you decide </strong> what to watch. Find out <strong>about the most popular shows/movies </strong> are right now <strong>or  pick a genre </strong> and find out more. 
-      </div>
-      <div class="dropdown child">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-        Favourites
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"></div>
+      <!-- LOGO AND DROPDOWN BUTTON -->
+  <header class="parent">
+    <h1 class="logo child">BingeBuddies</h1>
+    <div class="hide about"> <strong>BingeBuddies</strong> is your night-in couch companion to <strong>help you decide </strong> what to watch. Find out <strong>about the most popular shows/movies </strong> are right now <strong>or  pick a genre </strong> and find out more. </div>
+
+
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-toggle="dropdown"
+        aria-expanded="false"
+      >
+      Favourites
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <!-- <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a> -->
       </div>
   </header>
  
@@ -39,10 +49,18 @@
     </div>
 
     <!-- HEART ICON -->
-    <i class="fa-regular fa-heart love fa-2x grow"></i>
-    
-    <div class="buttons"><button class="watch fancy">Watch Trailer?</button></div>
-      
+   <i class="fa-regular fa-heart love fa-2x grow"></i>
+   <div class="buttons">
+     <button class="watch fancy">Watch Trailer?</button>
+   </div>
+      </div>
+    </div>
+
+   
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
 
     <div class="alert alert-danger alert-dismissible fade show">
       <strong>Error!</strong> A problem has been occurred while submitting your data.
@@ -53,7 +71,8 @@
       <section class="genre-section">
         <h4 class="genre-title">What genre would you like?</h4>
       </section>
-      <div class="genres"></div>
+      <div class="genres"></div> 
+      <button class="backBtn">Back</button>    
     </div>
     
     <footer class=""bg-light>
