@@ -93,7 +93,8 @@ function createCategoryButtons(categoryListArr) {
   
   function genreListCreation(tempArr) {
     const genreDiv = $(".genres");
-    const len = tempArr.length;
+    //const len = tempArr.length;
+     const len = 1;
     var ul = $("<ul>");
     genreDiv.empty();
     if (len) {
@@ -104,27 +105,35 @@ function createCategoryButtons(categoryListArr) {
         li.addClass("genreList")
         tempDiv.addClass("selectedGenreShowPreviewDiv");
         
-        //Gets video id 
-        var movieId = getYoutubeVideo(tempArr[i]);
-        
-        //Generates url of full video with autoplay off
-        var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1`;  
-
-        tempDiv.prepend(`
-        <iframe id="iframe-category" class='trailer'  width="300" height="150" 
-        src="${url}" frameborder="0">
-        </iframe>
-        `)
+      
        
         li.append(tempDiv);
         ul.append(li);
+
+        //Gets video id 
+        getYoutubeVideo(tempArr[i]).then(getShortUrl);
+      
+     
+
       }
       genreDiv.append(ul);
     }
   }
   
   
-  
+  function getShortUrl(movieId){
+
+    //Generates url of full video with autoplay off
+
+    var tempDiv = $(".selectedGenreShowPreviewDiv"); 
+    var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1`;  
+    tempDiv.append(`
+    <iframe id="iframe-category" class='trailer'  width="350" height="200" 
+    src="${url}" frameborder="0">
+    </iframe>
+    `)
+
+  }
 
 //Example of YouTube url using id from The MovieDB API 
 //https://www.youtube.com/watch?v=uMIsXdoj2vU
@@ -287,7 +296,7 @@ function displayYoutubeVideo (movieId){
     
     
     var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
-    console.log(url);
+    
     var hero = $('.hero');
   
     hero.html('');
@@ -303,14 +312,14 @@ function displayYoutubeVideo (movieId){
 
 
 function getYoutubeVideo(movieName) {
-   console.log(movieName);
+  
     return $.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${movieName}trailer&type=video&key=${youtubeKey}`)
         .then(function (data) {
             //Gets movie id from searched tv show or movie
             movieId=data.items[0].id.videoId;
            // Stores the video that is on screen to use as full mode
             storeOnScreenID(movieId,movieName);
-            console.log(movieId);
+          
              return movieId;
         }
      ,
@@ -339,12 +348,6 @@ function showTopTVShow(tempArr){
     //var movieId = getYoutubeVideo(TVShowNames[video]);
 
     getYoutubeVideo(TVShowNames[video]).then(displayYoutubeVideo);
-
-//  //Generates url with autoplay on
-//  var url = `https://www.youtube.com/embed/${movieId}?enablejsapi=1&start=0&end=15&autoplay=1&mute=1`;  
-//  console.log(url);
-//  //Display video on page
-//  displayYoutubeVideo(url);
 
    
     }
