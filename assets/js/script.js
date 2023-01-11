@@ -188,21 +188,23 @@ function genreListCreation(tempArr) {
 
 
 
-$(".watch").click(()=>{
- 
-  createFullScreen()
-  
-})
+
 
 
 function createFullScreen()
 { 
-  
   const fullScreenDiv = $(".fullscreen");
   fullScreenDiv.css("width","100%");
   displayYoutubeVideoFull();
 
-}
+};
+
+$(".watch").click(()=>{
+ 
+  createFullScreen();
+  
+});
+
 $(".closebtn").click(()=>{
   
   const fullScreenDiv = $(".fullscreen")  
@@ -210,7 +212,8 @@ $(".closebtn").click(()=>{
   var video=$("#popup") 
   video.remove();
 
-})
+});
+
 $(".backBtn").click(()=>
 {
   const title = $(".genre-title")
@@ -219,7 +222,7 @@ $(".backBtn").click(()=>
   genreDiv.empty();
   $(".backBtn").css("visibility","hidden")
   getCategoryList().then(createCategoryButtons); 
-})
+});
 
 
 
@@ -314,11 +317,9 @@ function displayYoutubeVideoFull() {
 
     //Add iframe to popup screen
     var layer = $(".fullscreen") ;
-
-    layer.html('');
     
     layer.append(`
-    <iframe id="popup" class='trailer'  width="1920" height="1080" 
+    <iframe id="popup" class='trailer'  width="95%" height="95%" 
     src="${urlFullScreen}" frameborder="1">
     </iframe>
     `);

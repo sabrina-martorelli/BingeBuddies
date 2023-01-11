@@ -311,7 +311,7 @@ transform: scale(1.1);
 {
   opacity: 1;
   width:0;
-  height:90%;
+  height:100%;
   position:fixed;
   top:0px;
   left:0px;
@@ -330,7 +330,7 @@ transform: scale(1.1);
 }
 .fullscreen a:hover , .fullscreen a:focus
 {
-    color: black; 
+  color: black; 
   text-decoration: none;
 }
 
