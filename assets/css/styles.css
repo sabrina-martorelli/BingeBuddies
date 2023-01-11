@@ -58,6 +58,31 @@ a {
   font-weight: 700 ;
 }
 
+/* ABOUT SECTION ON HOVER */
+.hide {
+  display: none;
+}
+
+.logo:hover + .hide {
+  display: block;
+  color: rgb(255, 255, 255);
+
+}
+
+.about {
+  width: 300px;
+  position: absolute;
+  top: 70px;
+  left: 360px;
+  color: rgb(239, 228, 228); 
+  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background: linear-gradient(90deg,#f441a5,#03a9f4);
+  background-size: 300%;
+  text-align: left;
+  padding: 20px;
+  border-radius: 30px;
+}
+
 /* GLOBAL CLASSES */
 .row,
 .column {
@@ -144,7 +169,7 @@ text-align: center;
 
 /* LOVE HEART ICON */
 .love {
-margin: 147px 0px 0px 200px;
+margin: -45px 0px 100px 850px;
 position: absolute;
 }
 
@@ -153,7 +178,7 @@ position: absolute;
 padding: 5px;
 border-radius: 15px;
 position: absolute;
-margin: 140px 0px 210px 50px;
+margin: -45px 0px 0px 725px;
 }
 
 /* THIS IS CUSTOM STYLING FOR THE WATCH TRAILER BUTTON ONLY */
