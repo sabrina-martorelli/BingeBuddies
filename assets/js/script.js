@@ -142,8 +142,8 @@ function getShowListforSelectedCategory(categoryName) {
 /**Creates genre List show  */
 function genreListCreation(tempArr) {
   const genreDiv = $(".genres");
-  //const len = tempArr.length;
-  const len = 5;
+  const len = tempArr.length;
+  //const len = 5;
   var ul = $("<ul>");
   genreDiv.empty();
   const button = $(".backBtn");
