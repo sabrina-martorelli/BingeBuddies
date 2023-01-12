@@ -2,15 +2,15 @@
 
 
 ## Description
-BingeBuddies is solution to your bordon, when in doubt about which TV show to watch visit BingeBuddies and you will get the top pick options, also option related to any particular genre is available.
+BingeBuddies is the solution to your boredom, when in doubt about which TV show to watch visit BingeBuddies for the top picks of the day, but also options related to any particular genre.
 
 
 ## Usage
-Top pick TV shows of the day are running for 7 sec on te trailer screen. User can see full trailer by pressing "watch trailer" button. Also various categories are present to choose the TV show from. On pressing any category button will display list of the shows for that particular category.
+Top pick TV shows of the day are running for 7 seconds on the trailer screen. User can see full trailer by pressing "watch trailer" button. Also various genre categories are present to choose TV shows from. On pressing any category button will display list of the shows for that particular category.
 On clicking the list item user can see the selected show's trailer on full screen.
 
 
-## Sreenshoot
+## Screenshot
 
 ![screenshot](assets/images/Screenshot1.png)
 ![screenshot2](assets/images/Screenshot2.png)
@@ -32,7 +32,7 @@ N/A
 ## Credits
 
 1. https://developers.google.com/youtube/v3 - With the YouTube Data API, you can add a variety of YouTube features to your application. Use the API to upload videos, manage playlists and subscriptions, update channel settings, and more.
-2. https://www.themoviedb.org/ -The API service is for those of you interested in using our movie, TV show or actor images and/or data in your application. Our API is a system we provide for you and your team to programmatically fetch and use our data and/or images.
+2. https://www.themoviedb.org/ -The API service is for those of you interested in using movie, TV show or actor images and/or data in your application. The API is a system we provide for you and your team to programmatically fetch and use our data and/or images.
 
 Github handles:
 1. [sanjana-1604](https://github.com/sanjana-1604)
