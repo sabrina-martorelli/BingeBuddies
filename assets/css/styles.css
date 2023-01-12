@@ -267,6 +267,7 @@ padding: 10px;
 .genreList p{
 width: 60vw;
 font-weight: 900;
+font-size: 40px;
 }
 .genres ul{
 grid-column: 1/5;
