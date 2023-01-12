@@ -6,7 +6,7 @@ BingeBuddies is the solution to your boredom, when in doubt about which TV show 
 
 
 ## Usage
-Top pick TV shows of the day are running for 7 seconds on the trailer screen. User can see full trailer by pressing "watch trailer" button. Also various genre categories are present to choose TV shows from. On pressing any category button will display list of the shows for that particular category.
+Top pick TV shows of the day are running for 15 seconds on the trailer screen. User can see full trailer by pressing "watch trailer" button. Also various genre categories are present to choose TV shows from. On pressing any category button will display list of the shows for that particular category.
 On clicking the list item user can see the selected show's trailer on full screen.
 
 
