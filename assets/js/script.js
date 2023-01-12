@@ -5,13 +5,9 @@ var MediaType = "tv";
 /********************************YOUTUBE API******************************************** */
 //var youtubeKey = "AIzaSyBAZxo00SckKfCeUq3uTe55UtdhB6__VuQ";
 
-//var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
+var youtubeKey = "AIzaSyDuOv_-6qlDSBsMKTT1hkvA-O2XzaLD8S8";
 
-//var youtubeKey = "AIzaSyBHYmzQQ233ybl_cfSWrZ0d4idz2_xZrR0";
-
- //var youtubeKey = "AIzaSyCm6HEMuVqhQCJ9cgt2NxCE6UBeMeVJivE";
-
- var youtubeKey = "AIzaSyDoUpq4Y32DjmSt6qgJyNf5QGeMQxJFy1s";
+ //var youtubeKey = "AIzaSyDoUpq4Y32DjmSt6qgJyNf5QGeMQxJFy1s";
 
 /******************************************************************************************* */
 
@@ -146,8 +142,8 @@ function getShowListforSelectedCategory(categoryName) {
 /**Creates genre List show  */
 function genreListCreation(tempArr) {
   const genreDiv = $(".genres");
-  //const len = tempArr.length;
-  const len = 5;
+  const len = tempArr.length;
+  //const len = 5;
   var ul = $("<ul>");
   genreDiv.empty();
   const button = $(".backBtn");
