@@ -17,7 +17,6 @@ On clicking the list item user can see the selected show's trailer on full scree
 ![screenshot3](assets/images/Screenshot3.png)
 ![screenshot4](assets/images/Screenshot4.png)
 
-
 ## Features
 
 Random Top pick of the day TV show
@@ -36,10 +35,10 @@ N/A
 2. https://www.themoviedb.org/ -The API service is for those of you interested in using our movie, TV show or actor images and/or data in your application. Our API is a system we provide for you and your team to programmatically fetch and use our data and/or images.
 
 Github handles:
-1. sanjana-1604 - https://github.com/sanjana-1604
-2. nrai14 - https://github.com/nrai14
-3. lauralp92 - https://github.com/lauralp92
-4. sabrina-martorelli - https://github.com/sabrina-martorelli
+1. [sanjana-1604](https://github.com/sanjana-1604)
+2. [sabrina-martorelli](https://github.com/sabrina-martorelli)
+3. [nrai14](https://github.com/nrai14) 
+4. [lauralp92](https://github.com/lauralp92)
 
 ## License
 
